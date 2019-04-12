@@ -1,10 +1,41 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule} from '@angular/router';
+import {LoginComponent} from './user/login/login.component';
+import {RegisterComponent} from './user/register/register.component';
+import {HomeComponent} from './user/home/home.component';
+import {BeforeLoginService} from './services/before-login.service';
+import {AfterLoginService} from './services/after-login.service';
+import {ProfileComponent} from './user/profile/profile.component';
+import {ProfileUpdateComponent} from './user/profile-update/profile-update.component';
 
-const routes: Routes = [];
+const routes: Routes = [{
+    path: 'login',
+    component: LoginComponent,
+    canActivate: [BeforeLoginService]
+}, {
+    path: 'register',
+    component: RegisterComponent,
+    canActivate: [BeforeLoginService]
+}, {
+    path: 'home',
+    component: HomeComponent,
+    canActivate: [AfterLoginService],
+}, {
+    path: 'profile',
+    component: ProfileComponent,
+    canActivate: [AfterLoginService],
+    // children: [{
+    //     path: 'update',
+    //     component: ProfileUpdateComponent
+    // }]
+}, {
+    path: 'update',
+    component: ProfileUpdateComponent
+}];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+    imports: [RouterModule.forRoot(routes)],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}
