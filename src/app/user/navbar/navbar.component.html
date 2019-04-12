@@ -1,0 +1,9 @@
+<nav class="navbar fixed-top " style="background-color: #32cd322e;">
+    <a class="navbar-brand" routerLink="home">Home</a>
+    <div>
+        <a class="nav-item btn " routerLink="login" *ngIf="!loggedIn">Login</a>
+        <a class="nav-item btn " (click)="logout($event)" *ngIf="loggedIn">Logout</a>
+        <a class="nav-item btn " routerLink="register" *ngIf="!loggedIn">Register</a>
+        <a class="nav-item btn " routerLink="home" *ngIf="loggedIn">Profile</a>
+    </div>
+</nav>
