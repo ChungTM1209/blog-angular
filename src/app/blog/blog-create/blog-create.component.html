@@ -1,0 +1,21 @@
+<form [formGroup]="blogCreateForm" class="container form-group pt-4 bg-light" (ngSubmit)="create()" enctype="multipart/form-data">
+  <div class="form-group">
+    <label for="title">Blog-Title</label>
+    <input type="text" class="form-control" id="title" placeholder="Input title" formControlName="title">
+  </div>
+
+  <div class="form-group">
+    <label for="content">Blog Content</label>
+    <textarea class="form-control" id="content" rows="3" formControlName="content"></textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="Description">Blog Description</label>
+    <textarea class="form-control" id="Description" rows="3" formControlName="description"></textarea>
+  </div>
+  <div class="form-group col-3">
+    <label for="image">Image</label>
+    <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)">
+  </div>
+  <button type="submit" class="btn btn-outline-primary">Create Blog</button>
+</form>

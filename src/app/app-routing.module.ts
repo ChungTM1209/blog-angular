@@ -7,6 +7,8 @@ import {BeforeLoginService} from './services/before-login.service';
 import {AfterLoginService} from './services/after-login.service';
 import {ProfileComponent} from './user/profile/profile.component';
 import {ProfileUpdateComponent} from './user/profile-update/profile-update.component';
+import {BlogCreateComponent} from './blog/blog-create/blog-create.component';
+import {BlogPostsComponent} from './blog/blog-posts/blog-posts.component';
 
 const routes: Routes = [{
     path: 'login',
@@ -18,20 +20,20 @@ const routes: Routes = [{
     canActivate: [BeforeLoginService]
 }, {
     path: 'home',
-    component: HomeComponent,
+    component: BlogPostsComponent,
     canActivate: [AfterLoginService],
 }, {
     path: 'profile',
     component: ProfileComponent,
     canActivate: [AfterLoginService],
-    // children: [{
-    //     path: 'update',
-    //     component: ProfileUpdateComponent
-    // }]
 }, {
     path: 'update',
     component: ProfileUpdateComponent
+},{
+    path: 'create-blog',
+    component: BlogCreateComponent
 }];
+
 
 @NgModule({
     imports: [RouterModule.forRoot(routes)],

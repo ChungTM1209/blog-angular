@@ -11,6 +11,8 @@ import {HttpClientModule} from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './user/profile/profile.component';
 import { ProfileUpdateComponent } from './user/profile-update/profile-update.component';
+import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
+import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
 
 @NgModule({
     declarations: [
@@ -22,6 +24,8 @@ import { ProfileUpdateComponent } from './user/profile-update/profile-update.com
         SidebarComponent,
         ProfileComponent,
         ProfileUpdateComponent,
+        BlogCreateComponent,
+        BlogPostsComponent,
     ],
     imports: [
         BrowserModule,
