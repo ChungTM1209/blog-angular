@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {UserInterface} from '../user-interface';
+import {BlogInterface} from '../blog-interface';
 
 @Injectable({
     providedIn: 'root'
@@ -31,11 +32,27 @@ export class BlogService {
 
         return this.http.post(`${this.API_URL}/update`, {data}, {headers: reqHeader});
     }
+
     makeReqHeader(token) {
         const reqHeader = new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: 'Bearer' + token
+            Authorization: 'Bearer ' + token
         });
         return reqHeader;
+    }
+
+    createBlog(data) {
+        const token = localStorage.getItem('token');
+        const reqHeader = new HttpHeaders({
+            enctype: 'multipart/form-data',
+            Authorization: 'Bearer ' + token
+        });
+        return this.http.post(`${this.API_URL}/create-blog`, data, {headers: reqHeader});
+    }
+    showBlogs() {
+        const token = localStorage.getItem('token');
+        const reqHeader = this.makeReqHeader(token);
+        console.log(reqHeader);
+        return this.http.get<BlogInterface[]>(`${this.API_URL}/show-blogs`, {headers: reqHeader});
     }
 }
