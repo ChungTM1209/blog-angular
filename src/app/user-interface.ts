@@ -4,4 +4,5 @@ export class UserInterface {
     age: number;
     phone: number;
     address: string;
+    image: string;
 }

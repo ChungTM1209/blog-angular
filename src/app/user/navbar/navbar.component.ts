@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {TokenService} from '../../services/token.service';
+import {UserInterface} from '../../user-interface';
+import {BlogService} from '../../services/blog.service';
 
 @Component({
     selector: 'app-navbar',
@@ -10,14 +12,27 @@ import {TokenService} from '../../services/token.service';
 })
 export class NavbarComponent implements OnInit {
     public loggedIn: boolean;
+    user: UserInterface;
 
     constructor(private auth: AuthService,
                 private router: Router,
-                private token: TokenService) {
+                private token: TokenService,
+                private blogService: BlogService,
+                private activatedRoute: ActivatedRoute) {
+        this.user = {
+            name: null,
+            email: null,
+            age: null,
+            phone: null,
+            address: null,
+            image: null
+        };
     }
 
     ngOnInit() {
         this.auth.authStatus.subscribe(value => this.loggedIn = value);
+        const token = localStorage.getItem('token');
+        this.blogService.getUserData(token).subscribe(user => this.user = user);
     }
 
     logout(event: MouseEvent) {

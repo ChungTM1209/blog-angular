@@ -1,6 +1,7 @@
-<nav class="navbar fixed-top " style="background-color: #32cd322e;">
-    <a class="navbar-brand" routerLink="home">Home</a>
+<nav class="navbar border-bottom fixed-top" style="background-color: white;">
+    <h4 class="navbar-brand">Welcome to Blog</h4>
     <div>
+        <a class="nav-item btn " *ngIf="loggedIn">Welcome {{user.name}}</a>
         <a class="nav-item btn " routerLink="login" *ngIf="!loggedIn">Login</a>
         <a class="nav-item btn " (click)="logout($event)" *ngIf="loggedIn">Logout</a>
         <a class="nav-item btn " routerLink="register" *ngIf="!loggedIn">Register</a>

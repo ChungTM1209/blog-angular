@@ -28,9 +28,12 @@ export class BlogService {
 
     updateProfile(data) {
         const token = localStorage.getItem('token');
-        const reqHeader = this.makeReqHeader(token);
+        const reqHeader = new HttpHeaders({
+            enctype: 'multipart/form-data',
+            Authorization: 'Bearer ' + token
+        });
 
-        return this.http.post(`${this.API_URL}/update`, {data}, {headers: reqHeader});
+        return this.http.post(`${this.API_URL}/update`, data, {headers: reqHeader});
     }
 
     makeReqHeader(token) {
@@ -49,10 +52,16 @@ export class BlogService {
         });
         return this.http.post(`${this.API_URL}/create-blog`, data, {headers: reqHeader});
     }
+
     showBlogs() {
         const token = localStorage.getItem('token');
         const reqHeader = this.makeReqHeader(token);
-        console.log(reqHeader);
         return this.http.get<BlogInterface[]>(`${this.API_URL}/show-blogs`, {headers: reqHeader});
+    }
+
+    deleteBlog(id) {
+        const token = localStorage.getItem('token');
+        const reqHeader = this.makeReqHeader(token);
+        return this.http.delete(`${this.API_URL}/delete-blog/${id}`, {headers: reqHeader});
     }
 }
