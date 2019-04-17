@@ -45,6 +45,6 @@ export class LoginComponent implements OnInit {
         console.log(data);
         this.token.handle(data.access_token);
         this.auth.changeAuthStatus(true);
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home/blogs');
     }
 }

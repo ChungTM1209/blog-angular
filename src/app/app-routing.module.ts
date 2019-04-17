@@ -9,6 +9,7 @@ import {ProfileComponent} from './user/profile/profile.component';
 import {ProfileUpdateComponent} from './user/profile-update/profile-update.component';
 import {BlogCreateComponent} from './blog/blog-create/blog-create.component';
 import {BlogPostsComponent} from './blog/blog-posts/blog-posts.component';
+import {WelcomeComponent} from './welcome/welcome.component';
 
 const routes: Routes = [{
     path: 'login',
@@ -20,18 +21,24 @@ const routes: Routes = [{
     canActivate: [BeforeLoginService]
 }, {
     path: 'home',
-    component: BlogPostsComponent,
+    component: HomeComponent,
     canActivate: [AfterLoginService],
+    children: [{
+        path: 'profile',
+        component: ProfileComponent,
+    }, {
+        path: 'blogs',
+        component: BlogPostsComponent,
+    }, {
+        path: 'create-blog',
+        component: BlogCreateComponent
+    }, {
+        path: 'update',
+        component: ProfileUpdateComponent
+    }]
 }, {
-    path: 'profile',
-    component: ProfileComponent,
-    canActivate: [AfterLoginService],
-}, {
-    path: 'update',
-    component: ProfileUpdateComponent
-},{
-    path: 'create-blog',
-    component: BlogCreateComponent
+    path: 'welcome',
+    component: WelcomeComponent
 }];
 
 

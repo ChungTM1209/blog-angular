@@ -13,12 +13,12 @@ import { ProfileComponent } from './user/profile/profile.component';
 import { ProfileUpdateComponent } from './user/profile-update/profile-update.component';
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
+import { WelcomeComponent } from './welcome/welcome.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         NavbarComponent,
-        HomeComponent,
         LoginComponent,
         RegisterComponent,
         SidebarComponent,
@@ -26,6 +26,8 @@ import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
         ProfileUpdateComponent,
         BlogCreateComponent,
         BlogPostsComponent,
+        WelcomeComponent,
+        HomeComponent
     ],
     imports: [
         BrowserModule,

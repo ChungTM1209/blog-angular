@@ -12,8 +12,8 @@ import {HttpHeaders} from '@angular/common/http';
 })
 export class ProfileUpdateComponent implements OnInit {
     user: UserInterface;
-
-     profileUpdateForm: FormGroup;
+    profileUpdateForm: FormGroup;
+    selectedFile: File = null;
 
     constructor(private blogService: BlogService,
                 private activatedRoute: ActivatedRoute,
@@ -24,16 +24,18 @@ export class ProfileUpdateComponent implements OnInit {
             email: null,
             age: null,
             phone: null,
-            address: null
+            address: null,
+            image: null
         };
     }
+
     ngOnInit() {
         this.profileUpdateForm = this.fb.group({
             email: [''],
             name: [''],
             age: [''],
             address: [''],
-            phone: ['']
+            phone: [''],
         });
         const token = localStorage.getItem('token');
         this.blogService.getUserData(token).subscribe(
@@ -46,10 +48,22 @@ export class ProfileUpdateComponent implements OnInit {
     update() {
         const {value} = this.profileUpdateForm;
         console.log(value);
-        this.blogService.updateProfile(value)
+        const userData = new FormData();
+        userData.append('email', value.email);
+        userData.append('name', value.name);
+        userData.append('age', value.age);
+        userData.append('address', value.address);
+        userData.append('phone', value.phone);
+        userData.append('image', this.selectedFile);
+        this.blogService.updateProfile(userData)
             .subscribe(
-                () => this.router.navigateByUrl('/profile'),
+                () => this.router.navigateByUrl('/home/profile'),
                 error => console.log(error));
 
+    }
+
+    selectFile(event) {
+        this.selectedFile = event.target.files[0];
+        return this.selectedFile;
     }
 }

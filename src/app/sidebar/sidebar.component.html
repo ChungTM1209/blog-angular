@@ -1,13 +1,13 @@
-<div class="pt-2">
-  <div class="card" style="background-color: aquamarine">
-    <img src="../../assets/image/4.jpg" class="card-img-top" alt="...">
+<div class="container-fluid pt-2">
+  <div class="card" style="background-color: aliceblue">
+    <img src="http://localhost:8000/storage/{{user.image}}" class="card-img-top" alt="...">
     <div class="card-body">
-      <p class="card-text">This is a profile image</p>
+      <p class="card-text">Welcome {{user.name}}</p>
     </div>
   </div>
     <div class="list-group">
       <button type="button" class="list-group-item list-group-item-action" routerLink="profile">My Profile</button>
-      <button type="button" class="list-group-item list-group-item-action" routerLink="home">Blogs</button>
+      <button type="button" class="list-group-item list-group-item-action" routerLink="blogs">Blogs</button>
       <button type="button" class="list-group-item list-group-item-action" routerLink="create-blog">Create-Blog</button>
       <button type="button" class="list-group-item list-group-item-action">#</button>
       <button type="button" class="list-group-item list-group-item-action" disabled>#</button>

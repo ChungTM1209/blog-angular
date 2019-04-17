@@ -18,7 +18,8 @@ export class ProfileComponent implements OnInit {
             email: null,
             age: null,
             phone: null,
-            address: null
+            address: null,
+            image: null
         };
 
     }
