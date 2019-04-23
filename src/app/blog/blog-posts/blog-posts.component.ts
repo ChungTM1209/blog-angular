@@ -9,7 +9,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./blog-posts.component.sass']
 })
 export class BlogPostsComponent implements OnInit {
-    blogs: BlogInterface[];
+    blogs: BlogInterface[] = [];
     blog: BlogInterface;
 
     constructor(private blogService: BlogService,
@@ -30,9 +30,14 @@ export class BlogPostsComponent implements OnInit {
 
     delete(id: number) {
         if (confirm('Bạn có chắc chắn muốn xóa ?')) {
-            return this.blogService.deleteBlog(id).subscribe(res => console.log(res));
+            return this.blogService.deleteBlog(id).subscribe((res) => {
+                alert(res);
+                this.showBlogs();
+            });
         } else {
             return this.router.navigateByUrl('home/blogs');
         }
     }
+
+
 }

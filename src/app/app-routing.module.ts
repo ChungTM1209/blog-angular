@@ -10,8 +10,12 @@ import {ProfileUpdateComponent} from './user/profile-update/profile-update.compo
 import {BlogCreateComponent} from './blog/blog-create/blog-create.component';
 import {BlogPostsComponent} from './blog/blog-posts/blog-posts.component';
 import {WelcomeComponent} from './welcome/welcome.component';
+import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
+import {BlogUpdateComponent} from './blog/blog-update/blog-update.component';
 
 const routes: Routes = [{
+    path: '', redirectTo: 'login', pathMatch: 'full'
+}, {
     path: 'login',
     component: LoginComponent,
     canActivate: [BeforeLoginService]
@@ -33,8 +37,14 @@ const routes: Routes = [{
         path: 'create-blog',
         component: BlogCreateComponent
     }, {
-        path: 'update',
+        path: 'profile-update',
         component: ProfileUpdateComponent
+    }, {
+        path: 'blog-detail/:id',
+        component: BlogDetailComponent
+    }, {
+        path: 'blog-update/:id',
+        component: BlogUpdateComponent
     }]
 }, {
     path: 'welcome',

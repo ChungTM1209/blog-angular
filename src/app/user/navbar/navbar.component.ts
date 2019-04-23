@@ -13,7 +13,6 @@ import {BlogService} from '../../services/blog.service';
 export class NavbarComponent implements OnInit {
     public loggedIn: boolean;
     user: UserInterface;
-
     constructor(private auth: AuthService,
                 private router: Router,
                 private token: TokenService,
@@ -31,8 +30,7 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit() {
         this.auth.authStatus.subscribe(value => this.loggedIn = value);
-        const token = localStorage.getItem('token');
-        this.blogService.getUserData(token).subscribe(user => this.user = user);
+        this.blogService.getUserData().subscribe(user => this.user = user);
     }
 
     logout(event: MouseEvent) {

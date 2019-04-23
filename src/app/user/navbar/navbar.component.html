@@ -1,10 +1,16 @@
-<nav class="navbar border-bottom fixed-top" style="background-color: white;">
-    <h4 class="navbar-brand">Welcome to Blog</h4>
+<nav class="navbar border-bottom text-light" style="background-color: #2176bd;">
+    <a class="navbar-brand" *ngIf="loggedIn">Welcome to {{user.name}} Blog</a>
+    <a class="navbar-brand" *ngIf="!loggedIn">Blog</a>
     <div>
-        <a class="nav-item btn " *ngIf="loggedIn">Welcome {{user.name}}</a>
-        <a class="nav-item btn " routerLink="login" *ngIf="!loggedIn">Login</a>
-        <a class="nav-item btn " (click)="logout($event)" *ngIf="loggedIn">Logout</a>
-        <a class="nav-item btn " routerLink="register" *ngIf="!loggedIn">Register</a>
-        <a class="nav-item btn " routerLink="home" *ngIf="loggedIn">Profile</a>
+        <label *ngIf="loggedIn">
+            <button class="btn-outline-primary" style="border-radius: 26.35em">Search</button>
+            <input type="text" style="border-radius: 26.35em">
+        </label>
+        <a class="nav-item pl-2 text-light" *ngIf="loggedIn">Hello: {{user.name}}</a>
+        <a class="nav-item pl-2 text-light" routerLink="login" *ngIf="!loggedIn">Login</a>
+        <a class="nav-item pl-2 text-light" (click)="logout($event)" *ngIf="loggedIn">Logout</a>
+        <a class="nav-item pl-2 text-light" routerLink="register" *ngIf="!loggedIn">Register</a>
+<!--        <a class="nav-item pl-2 text-light" routerLink="home" *ngIf="loggedIn">Profile</a>-->
     </div>
 </nav>
+

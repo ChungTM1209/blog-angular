@@ -9,8 +9,8 @@ import {BlogService} from '../services/blog.service';
     styleUrls: ['./sidebar.component.sass']
 })
 export class SidebarComponent implements OnInit {
-
     user: UserInterface;
+    opened = true;
 
     constructor(private blogService: BlogService,
                 private activatedRoute: ActivatedRoute) {
@@ -26,8 +26,7 @@ export class SidebarComponent implements OnInit {
     }
 
     ngOnInit() {
-        const token = localStorage.getItem('token');
-        this.blogService.getUserData(token).subscribe(user => this.user = user);
+        this.blogService.getUserData().subscribe(user => this.user = user);
     }
 
 }
