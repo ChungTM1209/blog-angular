@@ -25,8 +25,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        const token = localStorage.getItem('token');
-        this.blogService.getUserData(token).subscribe(user => this.user = user);
+        this.blogService.getUserData().subscribe(user => this.user = user);
     }
 
 }

@@ -37,8 +37,7 @@ export class ProfileUpdateComponent implements OnInit {
             address: [''],
             phone: [''],
         });
-        const token = localStorage.getItem('token');
-        this.blogService.getUserData(token).subscribe(
+        this.blogService.getUserData().subscribe(
             (user) => {
                 this.user = user;
                 this.profileUpdateForm.patchValue(user);
@@ -47,19 +46,30 @@ export class ProfileUpdateComponent implements OnInit {
 
     update() {
         const {value} = this.profileUpdateForm;
-        console.log(value);
-        const userData = new FormData();
-        userData.append('email', value.email);
-        userData.append('name', value.name);
-        userData.append('age', value.age);
-        userData.append('address', value.address);
-        userData.append('phone', value.phone);
-        userData.append('image', this.selectedFile);
-        this.blogService.updateProfile(userData)
-            .subscribe(
-                () => this.router.navigateByUrl('/home/profile'),
-                error => console.log(error));
-
+        if (this.selectedFile === null) {
+            const userData = new FormData();
+            userData.append('email', value.email);
+            userData.append('name', value.name);
+            userData.append('age', value.age);
+            userData.append('address', value.address);
+            userData.append('phone', value.phone);
+            this.blogService.updateProfile(userData)
+                .subscribe(
+                    () => this.router.navigateByUrl('/home/profile'),
+                    error => console.log(error));
+        } else {
+            const userData = new FormData();
+            userData.append('email', value.email);
+            userData.append('name', value.name);
+            userData.append('age', value.age);
+            userData.append('address', value.address);
+            userData.append('phone', value.phone);
+            userData.append('image', this.selectedFile);
+            this.blogService.updateProfile(userData)
+                .subscribe(
+                    () => this.router.navigateByUrl('/home/profile'),
+                    error => console.log(error));
+        }
     }
 
     selectFile(event) {

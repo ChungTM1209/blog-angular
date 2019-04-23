@@ -1,12 +1,13 @@
 import {Injectable} from '@angular/core';
-import {ActivatedRouteSnapshot, CanActivate, RouterStateSnapshot, UrlTree} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, CanActivateChild, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {Observable} from 'rxjs';
 import {TokenService} from './token.service';
+import {AuthService} from './auth.service';
 
 @Injectable({
     providedIn: 'root'
 })
-export class AfterLoginService implements CanActivate {
+export class AfterLoginService implements CanActivate, CanActivateChild {
 
     constructor(private token: TokenService) {
     }
@@ -17,4 +18,13 @@ export class AfterLoginService implements CanActivate {
         }
         return this.token.loggedIn();
     }
+
+    canActivateChild(childRoute: ActivatedRouteSnapshot, state: RouterStateSnapshot):
+        Observable<boolean | UrlTree> | Promise<boolean> | boolean | UrlTree {
+        if (!this.token.loggedIn()) {
+            alert('You need to login');
+        }
+        return this.token.loggedIn();
+    }
+
 }

@@ -6,7 +6,7 @@ import {NavbarComponent} from './user/navbar/navbar.component';
 import {HomeComponent} from './user/home/home.component';
 import {LoginComponent} from './user/login/login.component';
 import {RegisterComponent} from './user/register/register.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { ProfileComponent } from './user/profile/profile.component';
@@ -14,6 +14,21 @@ import { ProfileUpdateComponent } from './user/profile-update/profile-update.com
 import { BlogCreateComponent } from './blog/blog-create/blog-create.component';
 import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
 import { WelcomeComponent } from './welcome/welcome.component';
+import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {
+    MatButtonModule,
+    MatCardModule,
+    MatCheckboxModule,
+    MatIconModule,
+    MatInputModule,
+    MatListModule,
+    MatSidenavModule
+} from '@angular/material';
+import {MatSelectModule} from '@angular/material/select';
+
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
+import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
 
 @NgModule({
     declarations: [
@@ -27,13 +42,27 @@ import { WelcomeComponent } from './welcome/welcome.component';
         BlogCreateComponent,
         BlogPostsComponent,
         WelcomeComponent,
-        HomeComponent
+        HomeComponent,
+        BlogDetailComponent,
+        BlogUpdateComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ReactiveFormsModule,
-        HttpClientModule
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NoopAnimationsModule,
+        MatButtonModule,
+        MatCheckboxModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatInputModule,
+        FormsModule,
+        MatSidenavModule,
+        MatIconModule,
+        MatCardModule,
+        MatListModule
     ],
     providers: [],
     bootstrap: [AppComponent]

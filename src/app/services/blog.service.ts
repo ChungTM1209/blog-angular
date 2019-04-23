@@ -7,7 +7,8 @@ import {BlogInterface} from '../blog-interface';
     providedIn: 'root'
 })
 export class BlogService {
-    readonly API_URL = 'http://localhost:8000/api';
+    readonly API_URL = 'http://127.0.0.1:8000/api';
+    token = localStorage.getItem('token');
 
     constructor(private http: HttpClient) {
     }
@@ -21,47 +22,46 @@ export class BlogService {
     }
 
 
-    getUserData(token) {
-        const reqHeader = this.makeReqHeader(token);
-        return this.http.get<UserInterface>(`${this.API_URL}/me`, {headers: reqHeader});
+    getUserData() {
+        return this.http.get<UserInterface>(`${this.API_URL}/me`, {headers: this.makeReqHeaderJson()});
     }
 
     updateProfile(data) {
-        const token = localStorage.getItem('token');
-        const reqHeader = new HttpHeaders({
-            enctype: 'multipart/form-data',
-            Authorization: 'Bearer ' + token
-        });
-
-        return this.http.post(`${this.API_URL}/update`, data, {headers: reqHeader});
+        return this.http.post(`${this.API_URL}/update`, data, {headers: this.makeReqHeaderData()});
     }
 
-    makeReqHeader(token) {
-        const reqHeader = new HttpHeaders({
+    makeReqHeaderJson() {
+        return new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + token
+            Authorization: 'Bearer ' + this.token
         });
-        return reqHeader;
+    }
+
+    makeReqHeaderData() {
+        return new HttpHeaders({
+            enctype: 'multipart/form-data',
+            Authorization: 'Bearer ' + this.token
+        });
     }
 
     createBlog(data) {
-        const token = localStorage.getItem('token');
-        const reqHeader = new HttpHeaders({
-            enctype: 'multipart/form-data',
-            Authorization: 'Bearer ' + token
-        });
-        return this.http.post(`${this.API_URL}/create-blog`, data, {headers: reqHeader});
+        return this.http.post(`${this.API_URL}/create-blog`, data, {headers: this.makeReqHeaderData()});
     }
 
     showBlogs() {
-        const token = localStorage.getItem('token');
-        const reqHeader = this.makeReqHeader(token);
-        return this.http.get<BlogInterface[]>(`${this.API_URL}/show-blogs`, {headers: reqHeader});
+        return this.http.get<BlogInterface[]>(`${this.API_URL}/show-blogs`, {headers: this.makeReqHeaderJson()});
     }
 
     deleteBlog(id) {
-        const token = localStorage.getItem('token');
-        const reqHeader = this.makeReqHeader(token);
-        return this.http.delete(`${this.API_URL}/delete-blog/${id}`, {headers: reqHeader});
+        return this.http.delete(`${this.API_URL}/delete-blog/${id}`, {headers: this.makeReqHeaderJson()});
+    }
+
+    showBlogDetail(id) {
+        return this.http.get<BlogInterface>(`${this.API_URL}/blog-detail/${id}`, {headers: this.makeReqHeaderJson()});
+    }
+
+    updateBlog(id, data) {
+
+        return this.http.post(`${this.API_URL}/blog-update/${id}`, data, {headers: this.makeReqHeaderData()});
     }
 }

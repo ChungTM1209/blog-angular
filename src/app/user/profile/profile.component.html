@@ -1,18 +1,21 @@
-<div class="col pr-2 pt-2">
-  <div class="card mb-3" >
-    <div class="row no-gutters">
-      <div class="col-md-4">
-        <img src="http://localhost:8000/storage/{{user.image}}" class="card-img" style="width: 360px; height: 300px">
-      </div>
-      <div class="col-md-8">
-        <div class="card-body">
-          <h5 class="card-title">Name: {{user.name}}</h5>
-          <p class="card-text">Email: {{user.email}}</p>
-          <p class="card-text">Age: {{user.age}}</p>
-          <p class="card-text">Phone: {{user.phone}}</p>
-          <p class="card-text">Address: {{user.address}}</p>
+<div class="container-fluid pt-0">
+  <h2 class="text-center">My Profile</h2>
+  <div class="col">
+    <div class="card mb-3" >
+      <div class="row no-gutters">
+        <div class="col-md-4">
+          <img src="http://localhost:8000/storage/{{user.image}}" class="card-img" style="height: 280px">
         </div>
-        <button class="btn btn-outline-primary ml-2" routerLink="../update">Update Profile</button>
+        <div class="col-md-8">
+          <div class="card-body">
+            <h5 class="card-title">Name: {{user.name}}</h5>
+            <p class="card-text">Email: {{user.email}}</p>
+            <p class="card-text">Age: {{user.age}}</p>
+            <p class="card-text">Phone: {{user.phone}}</p>
+            <p class="card-text">Address: {{user.address}}</p>
+          </div>
+          <button class="btn btn-outline-primary ml-2" routerLink="../profile-update">Update Profile</button>
+        </div>
       </div>
     </div>
   </div>

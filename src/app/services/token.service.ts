@@ -4,9 +4,10 @@ import {Injectable} from '@angular/core';
     providedIn: 'root'
 })
 export class TokenService {
+    readonly API_URL = 'http://127.0.0.1:8000/api/';
     private iss = {
-        login: 'http://localhost:8000/api/login',
-        register: 'http://localhost:8000/api/register'
+        login: this.API_URL + 'login',
+        register: this.API_URL + 'register',
     };
 
     constructor() {
@@ -17,7 +18,7 @@ export class TokenService {
     }
 
     set(token) {
-        localStorage.setItem('token', token);
+        return localStorage.setItem('token', token);
     }
 
     get() {

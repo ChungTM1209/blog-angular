@@ -1,0 +1,19 @@
+<div class="container">
+    <h2 class="text-center">Blog Update</h2>
+    <form [formGroup]="blogUpdateForm" (ngSubmit)="updateBlog()">
+        <img src="http://localhost:8000/storage/{{blog.image}}" style="width: 100%; height: 400px" class="img-thumbnail">
+        <mat-form-field >
+            <input matInput type="text" value="{{blog.title}}" placeholder="Blog Title" formControlName="title">
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput type="text" value="{{blog.content}}" placeholder="Blog Content" formControlName="content">
+        </mat-form-field>
+        <mat-form-field >
+            <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description" formControlName="description">
+        </mat-form-field>
+        <input type="file" (change)="selectFile($event)">
+        <br>
+        <button type="submit" class="float-right">Update</button>
+    </form>
+
+</div>
