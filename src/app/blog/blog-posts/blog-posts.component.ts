@@ -21,7 +21,9 @@ export class BlogPostsComponent implements OnInit {
     }
 
     showBlogs() {
-        return this.blogService.showBlogs().subscribe(data => this.handleResponse(data));
+        return this.blogService.showBlogs().subscribe(data => {
+            this.handleResponse(data);
+        });
     }
 
     handleResponse(data) {

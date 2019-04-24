@@ -30,6 +30,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +46,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
         WelcomeComponent,
         HomeComponent,
         BlogDetailComponent,
-        BlogUpdateComponent
+        BlogUpdateComponent,
+        BlogSearchComponent
     ],
     imports: [
         BrowserModule,

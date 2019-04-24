@@ -8,7 +8,6 @@ import {BlogInterface} from '../blog-interface';
 })
 export class BlogService {
     readonly API_URL = 'http://127.0.0.1:8000/api';
-    token = localStorage.getItem('token');
 
     constructor(private http: HttpClient) {
     }
@@ -31,16 +30,18 @@ export class BlogService {
     }
 
     makeReqHeaderJson() {
+        const token = localStorage.getItem('token');
         return new HttpHeaders({
             'Content-Type': 'application/json',
-            Authorization: 'Bearer ' + this.token
+            Authorization: 'Bearer ' + token
         });
     }
 
     makeReqHeaderData() {
+        const token = localStorage.getItem('token');
         return new HttpHeaders({
             enctype: 'multipart/form-data',
-            Authorization: 'Bearer ' + this.token
+            Authorization: 'Bearer ' + token
         });
     }
 
@@ -61,7 +62,10 @@ export class BlogService {
     }
 
     updateBlog(id, data) {
-
         return this.http.post(`${this.API_URL}/blog-update/${id}`, data, {headers: this.makeReqHeaderData()});
+    }
+
+    search(keyWords: string) {
+        return this.http.post(`${this.API_URL}/search`, {keyWords}, {headers: this.makeReqHeaderJson()});
     }
 }

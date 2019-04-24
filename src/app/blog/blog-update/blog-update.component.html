@@ -10,7 +10,7 @@
             <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description" formControlName="description">
         </mat-form-field>
         <p>Blog Content</p>
-        <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="content"></ckeditor>
+        <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="contents"></ckeditor>
         <input type="file" (change)="selectFile($event)">
         <br>
         <button type="submit" class="float-right">Update</button>
