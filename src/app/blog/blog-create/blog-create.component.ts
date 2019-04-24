@@ -9,6 +9,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
         return !!(control && control.invalid && (control.dirty || control.touched || isSubmitted));
     }
 }
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-blog-create',
@@ -20,6 +21,7 @@ export class BlogCreateComponent implements OnInit {
     selectedFile: File = null;
     data: FormData;
     matcher = new MyErrorStateMatcher();
+    public Editor = ClassicEditor;
 
     constructor(private fb: FormBuilder,
                 private blogService: BlogService,
@@ -53,6 +55,6 @@ export class BlogCreateComponent implements OnInit {
 
     private handleResponse() {
         alert('Create successfully');
-        this.router.navigateByUrl('/home');
+        this.router.navigateByUrl('/home/blogs');
     }
 }

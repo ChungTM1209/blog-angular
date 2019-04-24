@@ -29,6 +29,7 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
+import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
     declarations: [
@@ -62,7 +63,8 @@ import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
         MatSidenavModule,
         MatIconModule,
         MatCardModule,
-        MatListModule
+        MatListModule,
+        CKEditorModule
     ],
     providers: [],
     bootstrap: [AppComponent]

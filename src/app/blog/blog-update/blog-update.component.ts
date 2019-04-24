@@ -2,7 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {BlogInterface} from '../../blog-interface';
 import {BlogService} from '../../services/blog.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-blog-update',
@@ -14,10 +15,12 @@ export class BlogUpdateComponent implements OnInit {
     blog: BlogInterface;
     blogUpdateForm: FormGroup;
     selectedFile: File = null;
+    public Editor = ClassicEditor;
 
     constructor(private fb: FormBuilder,
                 private blogService: BlogService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private router: Router) {
         this.options = fb.group({
             hideRequired: false,
             floatLabel: 'auto',
@@ -55,7 +58,7 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('content', value.content);
             blogUpdate.append('description', value.description);
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
-                data => console.log(data),
+                () => this.handleResponse(),
                 error1 => console.log(error1)
             );
         } else {
@@ -65,11 +68,16 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('description', value.description);
             blogUpdate.append('image', this.selectedFile);
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
-                data => console.log(data),
+                () => this.handleResponse(),
                 error1 => console.log(error1)
             );
         }
 
+    }
+
+    handleResponse() {
+        alert('UPDATE SUCCESS');
+        return this.router.navigateByUrl('/home/blogs');
     }
 
     selectFile(event) {

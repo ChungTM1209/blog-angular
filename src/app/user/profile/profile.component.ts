@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
             address: null,
             image: null
         };
-
     }
 
     ngOnInit() {
