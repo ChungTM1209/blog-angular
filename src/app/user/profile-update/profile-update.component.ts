@@ -3,7 +3,8 @@ import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserInterface} from '../../user-interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import {HttpHeaders} from '@angular/common/http';
+import * as moment from 'moment';
+import _date = moment.unitOfTime._date;
 
 @Component({
     selector: 'app-profile-update',
@@ -22,7 +23,7 @@ export class ProfileUpdateComponent implements OnInit {
         this.user = {
             name: null,
             email: null,
-            age: null,
+            dob: null,
             phone: null,
             address: null,
             image: null
@@ -33,7 +34,7 @@ export class ProfileUpdateComponent implements OnInit {
         this.profileUpdateForm = this.fb.group({
             email: [''],
             name: [''],
-            age: [''],
+            dob: [''],
             address: [''],
             phone: [''],
         });
@@ -50,7 +51,7 @@ export class ProfileUpdateComponent implements OnInit {
             const userData = new FormData();
             userData.append('email', value.email);
             userData.append('name', value.name);
-            userData.append('age', value.age);
+            userData.append('dob', value.dob);
             userData.append('address', value.address);
             userData.append('phone', value.phone);
             this.blogService.updateProfile(userData)
@@ -61,7 +62,7 @@ export class ProfileUpdateComponent implements OnInit {
             const userData = new FormData();
             userData.append('email', value.email);
             userData.append('name', value.name);
-            userData.append('age', value.age);
+            userData.append('dob', value.dob);
             userData.append('address', value.address);
             userData.append('phone', value.phone);
             userData.append('image', this.selectedFile);

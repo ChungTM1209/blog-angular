@@ -16,12 +16,13 @@ import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule,
+    MatCheckboxModule, MatChipsModule, MatDatepickerModule,
     MatIconModule,
     MatInputModule,
-    MatListModule,
+    MatListModule, MatNativeDateModule,
     MatSidenavModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
@@ -66,7 +67,12 @@ import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
         MatIconModule,
         MatCardModule,
         MatListModule,
-        CKEditorModule
+        CKEditorModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatChipsModule,
+        MatAutocompleteModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]

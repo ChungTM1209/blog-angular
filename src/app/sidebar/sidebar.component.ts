@@ -17,7 +17,7 @@ export class SidebarComponent implements OnInit {
         this.user = {
             name: null,
             email: null,
-            age: null,
+            dob: null,
             phone: null,
             address: null,
             image: null

@@ -66,6 +66,6 @@ export class BlogService {
     }
 
     search(keyWords: string) {
-        return this.http.post(`${this.API_URL}/search`, {keyWords}, {headers: this.makeReqHeaderJson()});
+        return this.http.post<BlogInterface[]>(`${this.API_URL}/search`, {keyWords}, {headers: this.makeReqHeaderJson()});
     }
 }

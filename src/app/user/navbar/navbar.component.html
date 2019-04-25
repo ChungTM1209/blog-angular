@@ -3,8 +3,8 @@
     <a class="navbar-brand" *ngIf="!loggedIn">Blog</a>
     <div>
                 <label *ngIf="loggedIn">
-                    <button type="submit" class="btn-outline-primary"
-                            style="border-radius: 26.35em" (click)="search()">Search</button>
+                    <button type="button" class="btn-outline-primary"
+                            style="border-radius: 26.35em" [routerLink]="['/home/search',this.keyWords]">Search</button>
                     <input type="text" style="border-radius: 26.35em" (change)="getKeyWords($event)">
                 </label>
 

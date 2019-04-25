@@ -1,7 +1,7 @@
 export class UserInterface {
     name: string;
     email: string;
-    age: number;
+    dob: number;
     phone: number;
     address: string;
     image: string;

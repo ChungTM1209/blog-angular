@@ -55,7 +55,7 @@ export class BlogUpdateComponent implements OnInit {
         if (this.selectedFile === null) {
             const blogUpdate = new FormData();
             blogUpdate.append('title', value.title);
-            blogUpdate.append('contents', value.contents);
+            blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
                 () => this.handleResponse(),
@@ -64,7 +64,7 @@ export class BlogUpdateComponent implements OnInit {
         } else {
             const blogUpdate = new FormData();
             blogUpdate.append('title', value.title);
-            blogUpdate.append('contents', value.contents);
+            blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
             blogUpdate.append('image', this.selectedFile);
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
