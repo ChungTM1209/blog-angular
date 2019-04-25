@@ -2,15 +2,16 @@
     <a class="navbar-brand" *ngIf="loggedIn">Welcome to {{user.name}} Blog</a>
     <a class="navbar-brand" *ngIf="!loggedIn">Blog</a>
     <div>
-        <label *ngIf="loggedIn">
-            <button class="btn-outline-primary" style="border-radius: 26.35em">Search</button>
-            <input type="text" style="border-radius: 26.35em">
-        </label>
+                <label *ngIf="loggedIn">
+                    <button type="button" class="btn-outline-primary"
+                            style="border-radius: 26.35em" [routerLink]="['/home/search',this.keyWords]">Search</button>
+                    <input type="text" style="border-radius: 26.35em" (change)="getKeyWords($event)">
+                </label>
+
         <a class="nav-item pl-2 text-light" *ngIf="loggedIn">Hello: {{user.name}}</a>
         <a class="nav-item pl-2 text-light" routerLink="login" *ngIf="!loggedIn">Login</a>
         <a class="nav-item pl-2 text-light" (click)="logout($event)" *ngIf="loggedIn">Logout</a>
         <a class="nav-item pl-2 text-light" routerLink="register" *ngIf="!loggedIn">Register</a>
-<!--        <a class="nav-item pl-2 text-light" routerLink="home" *ngIf="loggedIn">Profile</a>-->
     </div>
 </nav>
 

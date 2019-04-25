@@ -16,12 +16,13 @@ import { BlogPostsComponent } from './blog/blog-posts/blog-posts.component';
 import { WelcomeComponent } from './welcome/welcome.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
+    MatAutocompleteModule,
     MatButtonModule,
     MatCardModule,
-    MatCheckboxModule,
+    MatCheckboxModule, MatChipsModule, MatDatepickerModule,
     MatIconModule,
     MatInputModule,
-    MatListModule,
+    MatListModule, MatNativeDateModule,
     MatSidenavModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
@@ -30,6 +31,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
+import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +47,8 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
         WelcomeComponent,
         HomeComponent,
         BlogDetailComponent,
-        BlogUpdateComponent
+        BlogUpdateComponent,
+        BlogSearchComponent
     ],
     imports: [
         BrowserModule,
@@ -64,7 +67,12 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
         MatIconModule,
         MatCardModule,
         MatListModule,
-        CKEditorModule
+        CKEditorModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        MatChipsModule,
+        MatAutocompleteModule
+
     ],
     providers: [],
     bootstrap: [AppComponent]

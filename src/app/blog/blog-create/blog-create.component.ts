@@ -31,7 +31,7 @@ export class BlogCreateComponent implements OnInit {
     ngOnInit() {
         this.blogCreateForm = this.fb.group({
             title: ['', Validators.required],
-            content: ['', Validators.required],
+            contents: ['', Validators.required],
             description: ['', Validators.required],
             image: ['', Validators.required],
         });
@@ -41,7 +41,7 @@ export class BlogCreateComponent implements OnInit {
         if (this.blogCreateForm.valid) {
             const data = new FormData();
             data.append('title', this.blogCreateForm.value.title);
-            data.append('content', this.blogCreateForm.value.content);
+            data.append('contents', this.blogCreateForm.value.contents);
             data.append('description', this.blogCreateForm.value.description);
             data.append('image', this.selectedFile);
             return this.blogService.createBlog(data).subscribe(() => this.handleResponse());
@@ -50,6 +50,7 @@ export class BlogCreateComponent implements OnInit {
 
     uploadFile(event) {
         this.selectedFile = event.target.files[0];
+        console.log(this.selectedFile);
         return this.selectedFile;
     }
 

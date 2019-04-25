@@ -18,22 +18,22 @@
         </mat-error>
     </mat-form-field>
 <!--    <mat-form-field style="width: 100%">-->
-<!--        <label for="content"></label>-->
-<!--        <textarea matInput id="content" rows="2" formControlName="content" placeholder="Blog Content" [errorStateMatcher]="matcher"></textarea>-->
-<!--        <mat-error *ngIf="blogCreateForm.controls.content.hasError('required')">-->
+<!--        <label for="contents"></label>-->
+<!--        <textarea matInput id="contents" rows="2" formControlName="contents" placeholder="Blog Content" [errorStateMatcher]="matcher"></textarea>-->
+<!--        <mat-error *ngIf="blogCreateForm.controls.contents.hasError('required')">-->
 <!--            Blog Content required-->
 <!--        </mat-error>-->
 
 <!--    </mat-form-field>-->
     <p>Blog Content</p>
-    <ckeditor [editor]="Editor" formControlName="content"></ckeditor>
-    <div class="text text-danger" *ngIf="blogCreateForm.controls.content.hasError('required')">
+    <ckeditor [editor]="Editor" formControlName="contents"></ckeditor>
+    <div class="text text-danger" *ngIf="blogCreateForm.controls.contents.hasError('required')">
         Blog Content required
     </div>
 
     <div class="form-group" style="width: 30%">
         <label for="image">Image</label>
-        <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)">
+        <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)" multiple>
         <mat-error *ngIf="blogCreateForm.controls.image.hasError('required')">
             Image required
         </mat-error>

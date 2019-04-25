@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {BlogService} from '../../services/blog.service';
 import {BlogInterface} from '../../blog-interface';
 import {Router} from '@angular/router';
@@ -9,6 +9,7 @@ import {Router} from '@angular/router';
     styleUrls: ['./blog-posts.component.sass']
 })
 export class BlogPostsComponent implements OnInit {
+    @Input() keyWords: string;
     blogs: BlogInterface[] = [];
     blog: BlogInterface;
 
@@ -17,11 +18,17 @@ export class BlogPostsComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.showBlogs();
+        if (!this.keyWords || this.keyWords === '') {
+            this.showBlogs();
+        } else {
+            this.blogService.search(this.keyWords).subscribe(data => this.handleResponse(data));
+        }
     }
 
     showBlogs() {
-        return this.blogService.showBlogs().subscribe(data => this.handleResponse(data));
+        return this.blogService.showBlogs().subscribe(data => {
+            this.handleResponse(data);
+        });
     }
 
     handleResponse(data) {

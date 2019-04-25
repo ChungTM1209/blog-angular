@@ -12,6 +12,7 @@ import {BlogPostsComponent} from './blog/blog-posts/blog-posts.component';
 import {WelcomeComponent} from './welcome/welcome.component';
 import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {BlogUpdateComponent} from './blog/blog-update/blog-update.component';
+import {BlogSearchComponent} from './blog/blog-search/blog-search.component';
 
 const routes: Routes = [{
     path: '', redirectTo: 'login', pathMatch: 'full'
@@ -45,6 +46,9 @@ const routes: Routes = [{
     }, {
         path: 'blog-update/:id',
         component: BlogUpdateComponent
+    }, {
+        path: 'search/:keyWords',
+        component: BlogSearchComponent
     }]
 }, {
     path: 'welcome',
