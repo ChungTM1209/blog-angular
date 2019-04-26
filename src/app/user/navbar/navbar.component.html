@@ -4,7 +4,7 @@
     <div>
                 <label *ngIf="loggedIn">
                     <button type="button" class="btn-outline-primary"
-                            style="border-radius: 26.35em" [routerLink]="['/home/search',this.keyWords]">Search</button>
+                            style="border-radius: 26.35em"  (click)="onClick()">Search</button>
                     <input type="text" style="border-radius: 26.35em" (change)="getKeyWords($event)">
                 </label>
 
