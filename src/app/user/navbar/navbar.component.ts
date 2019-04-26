@@ -6,6 +6,8 @@ import {UserInterface} from '../../user-interface';
 import {BlogService} from '../../services/blog.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {BlogInterface} from '../../blog-interface';
+import {SearchService} from '../../services/search.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'app-navbar',
@@ -17,13 +19,14 @@ export class NavbarComponent implements OnInit {
     user: UserInterface;
     keyWords: string;
     blogs: BlogInterface[] = [];
-
+currentKeyword;
     constructor(private auth: AuthService,
                 private router: Router,
                 private token: TokenService,
                 private blogService: BlogService,
                 private activatedRoute: ActivatedRoute,
-                private fb: FormBuilder) {
+                private fb: FormBuilder,
+                private searchService: SearchService) {
         this.user = {
             name: null,
             email: null,
@@ -49,5 +52,19 @@ export class NavbarComponent implements OnInit {
 
     getKeyWords($event) {
         this.keyWords = $event.target.value.trim();
+    }
+
+    onClick() {
+        this.searchService.changeKeyword(this.keyWords);
+        if (this.keyWords) {
+            if (this.keyWords !== this.currentKeyword) {
+                this.currentKeyword = this.keyWords;
+                this.router.navigate(['/home/search/', this.currentKeyword]);
+            } else {
+                this.router.navigate(['/home/search/', this.keyWords]);
+            }
+        } else {
+            this.router.navigateByUrl('home/blogs');
+        }
     }
 }

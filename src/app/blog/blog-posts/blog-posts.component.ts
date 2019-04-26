@@ -2,6 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {BlogService} from '../../services/blog.service';
 import {BlogInterface} from '../../blog-interface';
 import {Router} from '@angular/router';
+import {SearchService} from '../../services/search.service';
+import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'app-blog-posts',
@@ -14,15 +16,12 @@ export class BlogPostsComponent implements OnInit {
     blog: BlogInterface;
 
     constructor(private blogService: BlogService,
-                private router: Router) {
+                private router: Router,
+                private searchService: SearchService) {
     }
 
     ngOnInit() {
-        if (!this.keyWords || this.keyWords === '') {
             this.showBlogs();
-        } else {
-            this.blogService.search(this.keyWords).subscribe(data => this.handleResponse(data));
-        }
     }
 
     showBlogs() {
@@ -33,6 +32,7 @@ export class BlogPostsComponent implements OnInit {
 
     handleResponse(data) {
         this.blogs = data;
+
     }
 
     delete(id: number) {
