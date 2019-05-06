@@ -22,7 +22,7 @@ import {
     MatCheckboxModule, MatChipsModule, MatDatepickerModule,
     MatIconModule,
     MatInputModule,
-    MatListModule, MatNativeDateModule,
+    MatListModule, MatNativeDateModule, MatPaginatorModule,
     MatSidenavModule
 } from '@angular/material';
 import {MatSelectModule} from '@angular/material/select';
@@ -32,6 +32,8 @@ import { BlogDetailComponent } from './blog/blog-detail/blog-detail.component';
 import { BlogUpdateComponent } from './blog/blog-update/blog-update.component';
 import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
+import {ShareButtonsModule} from '@ngx-share/buttons';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 @NgModule({
     declarations: [
@@ -71,7 +73,10 @@ import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
         MatDatepickerModule,
         MatNativeDateModule,
         MatChipsModule,
-        MatAutocompleteModule
+        MatAutocompleteModule,
+        ShareButtonsModule,
+        MatPaginatorModule,
+        NgxPaginationModule
 
     ],
     providers: [],

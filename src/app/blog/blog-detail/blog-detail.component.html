@@ -2,24 +2,30 @@
     <h2 class="text-center">Blog Detail</h2>
     <mat-card>
         <mat-card-header>
-            <div mat-card-avatar
-                 style="
-                 background-image: url('https://cdn4.vectorstock.com/i/1000x1000/58/23/human-man-user-profile-avatar-glyph-icon-vector-10705823.jpg');
-                 background-size: cover">
-            </div>
+            <img mat-card-avatar *ngIf="blog.image"
+                 src="http://localhost:8000/storage/{{blog.image}}" style="height: 70px;width: 70px">
             <mat-card-title>{{blog.title}}</mat-card-title>
             <mat-card-subtitle>{{blog.description}}</mat-card-subtitle>
         </mat-card-header>
 
-        <img mat-card-image src="http://localhost:8000/storage/{{blog.image}}" class="img-thumbnail pl-3">
+<!--        <img mat-card-image src="http://localhost:8000/storage/{{blog.image}}" class="img-thumbnail pl-3">-->
         <mat-card-content>
             <p [innerHTML]="blog.content" >
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>LIKE</button>
-            <button mat-button>SHARE</button>
-            <button mat-button [routerLink]="['../../blog-update', blog.id]">EDIT</button>
+            <div>
+                <share-buttons class="float-right pb-2" [theme]="'default'"
+                               [include]="['facebook','email']"
+                               [show]="2"
+                               [showIcon]="true"
+                               [showText]="true"
+                               [size]="2"
+                               [autoSetMeta]="true"
+                ></share-buttons>
+            </div>
+            <button class="btn btn-outline-primary mr-2">LIKE</button>
+            <button class="btn btn-outline-primary" [routerLink]="['/home/blog-update/', blog.id]">EDIT</button>
         </mat-card-actions>
     </mat-card>
 

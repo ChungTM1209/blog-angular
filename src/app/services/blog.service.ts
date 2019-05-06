@@ -68,4 +68,8 @@ export class BlogService {
     search(keyWords: string) {
         return this.http.post<BlogInterface[]>(`${this.API_URL}/search`, {keyWords}, {headers: this.makeReqHeaderJson()});
     }
+
+    getAllTags() {
+        return this.http.get(`${this.API_URL}/get-all-tags`, {headers: this.makeReqHeaderJson()});
+    }
 }

@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlogInterface} from '../../blog-interface';
 import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import {COMMA, ENTER, TAB} from '@angular/cdk/keycodes';
+import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
 
 @Component({
     selector: 'app-blog-update',
@@ -16,7 +18,17 @@ export class BlogUpdateComponent implements OnInit {
     blogUpdateForm: FormGroup;
     selectedFile: File = null;
     public Editor = ClassicEditor;
+    visible = true;
+    selectable = true;
+    removable = true;
+    addOnBlur = true;
+    separatorKeysCodes: number[] = [COMMA, TAB, ENTER];
+    tag = new FormControl();
+    tags: string[] = [];
+    allTags;
 
+    @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
+    @ViewChild('auto') matAutocomplete: MatAutocomplete;
     constructor(private fb: FormBuilder,
                 private blogService: BlogService,
                 private route: ActivatedRoute,
@@ -30,7 +42,8 @@ export class BlogUpdateComponent implements OnInit {
             content: null,
             description: null,
             id: null,
-            image: null
+            image: null,
+            tag: null
         };
     }
 
@@ -45,8 +58,12 @@ export class BlogUpdateComponent implements OnInit {
         this.blogService.showBlogDetail(id).subscribe(
             (data) => {
                 this.blog = data;
+                this.changeToArray(data.tag);
                 this.blogUpdateForm.patchValue(data);
             }
+        );
+        this.blogService.getAllTags().subscribe(
+            next => this.allTags = next
         );
     }
 
@@ -57,6 +74,9 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('title', value.title);
             blogUpdate.append('contents', value.contents);
             blogUpdate.append('description', value.description);
+            for (let i = 0; i < this.tags.length; i++) {
+                blogUpdate.append('tag' + i, this.tags[i]);
+            }
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
                 () => this.handleResponse(),
                 error1 => console.log(error1)
@@ -67,6 +87,9 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('contents', value.contents);
             blogUpdate.append('description', value.description);
             blogUpdate.append('image', this.selectedFile);
+            for (let i = 0; i < this.tags.length; i++) {
+                blogUpdate.append('tag' + i, this.tags[i]);
+            }
             return this.blogService.updateBlog(this.blog.id, blogUpdate).subscribe(
                 () => this.handleResponse(),
                 error1 => console.log(error1)
@@ -83,5 +106,41 @@ export class BlogUpdateComponent implements OnInit {
     selectFile(event) {
         this.selectedFile = event.target.files[0];
         return this.selectedFile;
+    }
+    add(event: MatChipInputEvent): void {
+        if (!this.matAutocomplete.isOpen) {
+            const input = event.input;
+            const value = event.value;
+
+            if ((value || '').trim()) {
+                this.tags.push(value.trim());
+            }
+
+            if (input) {
+                input.value = '';
+            }
+
+            this.tag.setValue(null);
+        }
+    }
+
+    remove(tag: string): void {
+        const index = this.tags.indexOf(tag);
+        if (index >= 0) {
+            this.tags.splice(index, 1);
+        }
+
+    }
+
+    selected(event: MatAutocompleteSelectedEvent): void {
+        this.tags.push(event.option.viewValue);
+        this.tagInput.nativeElement.value = '';
+        this.tag.setValue(null);
+    }
+    changeToArray(data) {
+        for (let i = 0; i < data.length; i++) {
+            this.tags[i] = data[i].name;
+        }
+        return this.tags;
     }
 }

@@ -18,7 +18,8 @@ export class BlogDetailComponent implements OnInit {
             content: null,
             description: null,
             id: null,
-            image: null
+            image: null,
+            tag: null
         };
     }
 
@@ -29,7 +30,9 @@ export class BlogDetailComponent implements OnInit {
 
     showDetail(id: number) {
         return this.blogService.showBlogDetail(id)
-            .subscribe(data => this.blog = data,
+            .subscribe(data => {
+                    this.blog = data;
+                },
                 error1 => console.log(error1));
     }
 }
