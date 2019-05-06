@@ -33,7 +33,6 @@ export class BlogCreateComponent implements OnInit {
     tag = new FormControl();
     tags: string[] = [];
     allTags;
-
     @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
     @ViewChild('auto') matAutocomplete: MatAutocomplete;
 
@@ -52,6 +51,7 @@ export class BlogCreateComponent implements OnInit {
         this.blogService.getAllTags().subscribe(
             next => this.allTags = next
         );
+
     }
 
     create() {
@@ -83,7 +83,6 @@ export class BlogCreateComponent implements OnInit {
         if (!this.matAutocomplete.isOpen) {
             const input = event.input;
             const value = event.value;
-
             if ((value || '').trim()) {
                 this.tags.push(value.trim());
             }
@@ -91,7 +90,6 @@ export class BlogCreateComponent implements OnInit {
             if (input) {
                 input.value = '';
             }
-
             this.tag.setValue(null);
         }
     }
