@@ -3,8 +3,7 @@ import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserInterface} from '../../user-interface';
 import {FormBuilder, FormGroup} from '@angular/forms';
-import * as moment from 'moment';
-import _date = moment.unitOfTime._date;
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-profile-update',
@@ -19,7 +18,8 @@ export class ProfileUpdateComponent implements OnInit {
     constructor(private blogService: BlogService,
                 private activatedRoute: ActivatedRoute,
                 private fb: FormBuilder,
-                private router: Router) {
+                private router: Router,
+                private auth: AuthService) {
         this.user = {
             name: null,
             email: null,
@@ -56,7 +56,7 @@ export class ProfileUpdateComponent implements OnInit {
             userData.append('phone', value.phone);
             this.blogService.updateProfile(userData)
                 .subscribe(
-                    () => this.router.navigateByUrl('/home/profile'),
+                    () => this.handleResponse(),
                     error => console.log(error));
         } else {
             const userData = new FormData();
@@ -68,13 +68,18 @@ export class ProfileUpdateComponent implements OnInit {
             userData.append('image', this.selectedFile);
             this.blogService.updateProfile(userData)
                 .subscribe(
-                    () => this.router.navigateByUrl('/home/profile'),
+                    () => this.handleResponse(),
                     error => console.log(error));
+            this.auth.update(this.user);
         }
     }
 
     selectFile(event) {
         this.selectedFile = event.target.files[0];
         return this.selectedFile;
+    }
+    handleResponse() {
+        this.auth.update(this.user);
+        this.router.navigateByUrl('/home/profile');
     }
 }

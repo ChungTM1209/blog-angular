@@ -4,4 +4,5 @@ export interface BlogInterface {
     content: string;
     description: string;
     image: string;
+    tag: string[];
 }

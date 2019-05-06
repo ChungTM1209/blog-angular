@@ -35,6 +35,7 @@ export class BlogSearchComponent implements OnInit {
     }
 
     search(keyWords) {
+        this.keyWords = keyWords;
         this.blogService.search(keyWords).subscribe(data => this.handleResponse(data));
 
     }

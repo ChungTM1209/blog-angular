@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute} from '@angular/router';
 import {UserInterface} from '../../user-interface';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
     selector: 'app-profile',
@@ -12,7 +13,8 @@ export class ProfileComponent implements OnInit {
     user: UserInterface;
 
     constructor(private blogService: BlogService,
-                private activatedRoute: ActivatedRoute) {
+                private activatedRoute: ActivatedRoute,
+                private auth: AuthService) {
         this.user = {
             name: null,
             email: null,
@@ -24,7 +26,7 @@ export class ProfileComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.blogService.getUserData().subscribe(user => this.user = user);
+         this.blogService.getUserData().subscribe(user => this.user = user);
     }
 
 }

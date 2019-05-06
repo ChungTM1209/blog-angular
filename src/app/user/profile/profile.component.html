@@ -3,7 +3,7 @@
   <div class="col">
     <div class="card mb-3" >
       <div class="row no-gutters">
-        <div class="col-md-4">
+        <div class="col-md-4" *ngIf="user.image">
           <img src="http://localhost:8000/storage/{{user.image}}" class="card-img" style="height: 280px">
         </div>
         <div class="col-md-8">
