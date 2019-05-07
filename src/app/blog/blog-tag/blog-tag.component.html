@@ -1,0 +1,45 @@
+<div class="container-fluid">
+  <h2 class="text-center">Blog Lists By Tag: {{tagName}}</h2>
+  <div class="col-4 offset-8" *ngIf=" blogs.length > 5">
+    <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+  </div>
+  <div class="row">
+    <div *ngIf="blogs.length === 0">
+      <p class="text text-danger">Chưa có bài viết nào</p>
+    </div>
+
+    <div class="col-md-4 p-2" *ngFor="let blog of blogs | paginate: { itemsPerPage: 5, currentPage: currentPage }">
+      <div class="card">
+        <div class="view overlay" *ngIf="blog.image">
+          <img class="card-img-top"
+               src="http://localhost:8000/storage/{{blog.image}}"
+               alt="Card image cap" [routerLink]="['/home/blog-detail',blog.id]">
+          <a>
+            <div class="mask rgba-white-slight"></div>
+          </a>
+        </div>
+
+        <div class="card-body">
+
+          <a class="activator waves-effect waves-light mr-4"><i
+                  class="fas fa-share-alt"></i></a>
+          <h4 class="card-title" *ngIf="blog" [routerLink]="['/home/blog-detail',blog.id]">{{ blog.title }}</h4>
+          <a *ngIf="!blog">{{blog.title}}</a>
+          <hr>
+          <p class="card-text" [routerLink]="['/home/blog-detail',blog.id]">{{ blog.description }}</p>
+          <a *ngIf="!blog">{{blog.description}}</a>
+          <p class="card-text text-muted font-italic" >Ngày tạo: {{ blog.created_at }}</p>
+
+          <a class="btn btn-outline-danger float-right" (click)="delete(blog.id)">Delete</a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="col-4 offset-8" *ngIf="blogs.length > 5">
+      <pagination-controls (pageChange)="currentPage = $event"></pagination-controls>
+    </div>
+  </div>
+
+
+</div>

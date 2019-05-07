@@ -34,6 +34,7 @@ import {CKEditorModule} from '@ckeditor/ckeditor5-angular';
 import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
 import {ShareButtonsModule} from '@ngx-share/buttons';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
 
 @NgModule({
     declarations: [
@@ -50,7 +51,8 @@ import {NgxPaginationModule} from 'ngx-pagination';
         HomeComponent,
         BlogDetailComponent,
         BlogUpdateComponent,
-        BlogSearchComponent
+        BlogSearchComponent,
+        BlogTagComponent
     ],
     imports: [
         BrowserModule,

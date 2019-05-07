@@ -72,4 +72,8 @@ export class BlogService {
     getAllTags() {
         return this.http.get(`${this.API_URL}/get-all-tags`, {headers: this.makeReqHeaderJson()});
     }
+
+    getBlogDataByTag(tag: string) {
+        return this.http.post<BlogInterface[]>(`${this.API_URL}/get-user-by-tag`, {tag}, {headers: this.makeReqHeaderJson()});
+    }
 }

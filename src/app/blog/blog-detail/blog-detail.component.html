@@ -8,12 +8,16 @@
             <mat-card-subtitle>{{blog.description}}</mat-card-subtitle>
         </mat-card-header>
 
-<!--        <img mat-card-image src="http://localhost:8000/storage/{{blog.image}}" class="img-thumbnail pl-3">-->
         <mat-card-content>
             <p [innerHTML]="blog.content" >
             </p>
         </mat-card-content>
-        <mat-card-actions>
+        <span class="float-left pr-3 pt-1">TAG: </span>
+        <mat-chip-list *ngFor="let tag of tags" style="float: left; padding-right: 10px">
+            <mat-chip [routerLink]="['/home/blog-tag/',tag]">{{tag}}</mat-chip>
+        </mat-chip-list>
+
+        <mat-card-actions style="clear: both;">
             <div>
                 <share-buttons class="float-right pb-2" [theme]="'default'"
                                [include]="['facebook','email']"
@@ -23,9 +27,10 @@
                                [size]="2"
                                [autoSetMeta]="true"
                 ></share-buttons>
+                <button class="btn btn-outline-primary mr-2">LIKE</button>
+                <button class="btn btn-outline-primary" [routerLink]="['/home/blog-update/', blog.id]">EDIT</button>
             </div>
-            <button class="btn btn-outline-primary mr-2">LIKE</button>
-            <button class="btn btn-outline-primary" [routerLink]="['/home/blog-update/', blog.id]">EDIT</button>
+
         </mat-card-actions>
     </mat-card>
 
