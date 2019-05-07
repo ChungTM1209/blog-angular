@@ -13,6 +13,7 @@ import {WelcomeComponent} from './welcome/welcome.component';
 import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {BlogUpdateComponent} from './blog/blog-update/blog-update.component';
 import {BlogSearchComponent} from './blog/blog-search/blog-search.component';
+import {BlogTagComponent} from './blog/blog-tag/blog-tag.component';
 
 const routes: Routes = [{
     path: '', redirectTo: 'login', pathMatch: 'full'
@@ -49,6 +50,9 @@ const routes: Routes = [{
     }, {
         path: 'search/:keyWords',
         component: BlogSearchComponent
+    }, {
+        path: 'blog-tag/:tagName',
+        component: BlogTagComponent
     }]
 }, {
     path: 'welcome',

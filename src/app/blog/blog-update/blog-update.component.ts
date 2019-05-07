@@ -3,9 +3,9 @@ import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {BlogInterface} from '../../blog-interface';
 import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
-import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import {COMMA, ENTER, TAB} from '@angular/cdk/keycodes';
 import {MatAutocomplete, MatAutocompleteSelectedEvent, MatChipInputEvent} from '@angular/material';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
     selector: 'app-blog-update',
@@ -17,7 +17,6 @@ export class BlogUpdateComponent implements OnInit {
     blog: BlogInterface;
     blogUpdateForm: FormGroup;
     selectedFile: File = null;
-    public Editor = ClassicEditor;
     visible = true;
     selectable = true;
     removable = true;
@@ -26,7 +25,7 @@ export class BlogUpdateComponent implements OnInit {
     tag = new FormControl();
     tags: string[] = [];
     allTags;
-
+    public Editor = ClassicEditor;
     @ViewChild('tagInput') tagInput: ElementRef<HTMLInputElement>;
     @ViewChild('auto') matAutocomplete: MatAutocomplete;
     constructor(private fb: FormBuilder,
@@ -50,7 +49,7 @@ export class BlogUpdateComponent implements OnInit {
     ngOnInit() {
         this.blogUpdateForm = this.fb.group({
             title: [''],
-            contents: [''],
+            content: [''],
             description: [''],
 
         });
@@ -72,7 +71,7 @@ export class BlogUpdateComponent implements OnInit {
         if (this.selectedFile === null) {
             const blogUpdate = new FormData();
             blogUpdate.append('title', value.title);
-            blogUpdate.append('contents', value.contents);
+            blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
             for (let i = 0; i < this.tags.length; i++) {
                 blogUpdate.append('tag' + i, this.tags[i]);
@@ -84,7 +83,7 @@ export class BlogUpdateComponent implements OnInit {
         } else {
             const blogUpdate = new FormData();
             blogUpdate.append('title', value.title);
-            blogUpdate.append('contents', value.contents);
+            blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
             blogUpdate.append('image', this.selectedFile);
             for (let i = 0; i < this.tags.length; i++) {

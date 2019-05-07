@@ -1,16 +1,18 @@
 <div class="container">
     <h2 class="text-center">Blog Update</h2>
     <form [formGroup]="blogUpdateForm" (ngSubmit)="updateBlog()">
-        <img src="http://localhost:8000/storage/{{blog.image}}" style="width: 100%; height: 400px" class="img-thumbnail">
-        <mat-form-field >
+        <img src="http://localhost:8000/storage/{{blog.image}}" style="width: 100%; height: 400px"
+             class="img-thumbnail" *ngIf="blog.image">
+        <mat-form-field>
             <input matInput type="text" value="{{blog.title}}" placeholder="Blog Title" formControlName="title">
         </mat-form-field>
 
-        <mat-form-field >
-            <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description" formControlName="description">
+        <mat-form-field>
+            <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description"
+                   formControlName="description">
         </mat-form-field>
         <p>Blog Content</p>
-        <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="contents"></ckeditor>
+        <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="content"></ckeditor>
         <input type="file" (change)="selectFile($event)">
         <mat-form-field class="example-chip-list">
             <mat-chip-list #tagList>
@@ -33,7 +35,7 @@
                         [matAutocomplete]="auto">
             </mat-chip-list>
             <mat-autocomplete #auto (optionSelected)=selected($event)>
-                <mat-option *ngFor="let tag of allTags" [value]="tag" >
+                <mat-option *ngFor="let tag of allTags" [value]="tag">
                     {{tag.name}}
                 </mat-option>
             </mat-autocomplete>
