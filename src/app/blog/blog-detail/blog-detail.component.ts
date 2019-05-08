@@ -12,6 +12,7 @@ export class BlogDetailComponent implements OnInit {
     blog: BlogInterface;
     tags: string[] = [];
     allTags;
+    status = false;
 
     constructor(private blogService: BlogService,
                 private route: ActivatedRoute) {
@@ -43,5 +44,9 @@ export class BlogDetailComponent implements OnInit {
             this.tags[i] = data[i].name;
         }
         return this.tags;
+    }
+
+    changeStatus($event: MouseEvent) {
+        this.status = !this.status;
     }
 }

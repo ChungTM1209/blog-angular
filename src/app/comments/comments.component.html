@@ -1,0 +1,27 @@
+<div class="row">
+    <mat-form-field class="col-5">
+        <textarea matInput placeholder="Leave a comment here" [formControl]="comments"></textarea>
+        <mat-error *ngIf="comments.hasError('required')">Body Required</mat-error>
+
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit"
+            style="float: right; margin: 30px;"
+            (click)="submit()">Comment
+    </button>
+</div>
+    <mat-card class="col-6" *ngFor="let cmt of comment">
+        <mat-card-header>
+            <img mat-card-avatar *ngIf="user.image"
+                 src="http://localhost:8000/storage/{{user.image}}"
+                 style="background-size: cover">
+            <mat-card-title>{{user.name}}</mat-card-title>
+            <mat-card-subtitle>Created_at: {{cmt.created_at}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <p>
+                {{cmt.body}}
+            </p>
+        </mat-card-content>
+        <app-reply [hidden]="hidden" [commentId]="cmt.id" [postId]="postId"></app-reply>
+        <button mat-raised-button color="primary" style="margin-left: 80%" (click)="reply($event)" [hidden]="!hidden">Reply</button>
+    </mat-card>
