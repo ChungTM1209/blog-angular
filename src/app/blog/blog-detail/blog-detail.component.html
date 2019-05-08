@@ -30,8 +30,10 @@
                 <button class="btn btn-outline-primary mr-2">LIKE</button>
                 <button class="btn btn-outline-primary" [routerLink]="['/home/blog-update/', blog.id]">EDIT</button>
             </div>
-
         </mat-card-actions>
+        <button mat-raised-button color="primary" (click)="changeStatus($event)" [routerLink]="['comments/', blog.id]">Comment</button>
+        <router-outlet *ngIf="status" ></router-outlet>
+
     </mat-card>
 
 </div>

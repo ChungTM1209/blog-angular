@@ -4,10 +4,9 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {TokenService} from '../../services/token.service';
 import {UserInterface} from '../../user-interface';
 import {BlogService} from '../../services/blog.service';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder} from '@angular/forms';
 import {BlogInterface} from '../../blog-interface';
 import {SearchService} from '../../services/search.service';
-import {el} from '@angular/platform-browser/testing/src/browser_util';
 
 @Component({
     selector: 'app-navbar',
@@ -15,10 +14,11 @@ import {el} from '@angular/platform-browser/testing/src/browser_util';
     styleUrls: ['./navbar.component.sass']
 })
 export class NavbarComponent implements OnInit {
-    public loggedIn: boolean;
     user: UserInterface ;
     keyWords: string;
     blogs: BlogInterface[] = [];
+    public loggedIn: boolean;
+
     constructor(private auth: AuthService,
                 private router: Router,
                 private token: TokenService,
@@ -38,9 +38,10 @@ export class NavbarComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.auth.authStatus.subscribe(value => this.loggedIn = value);
         this.blogService.getUserData().subscribe(user => this.user = user);
         this.auth.userData.subscribe(user => this.user = user);
+        this.auth.authStatus.subscribe(value => this.loggedIn = value);
+
     }
 
     logout(event: MouseEvent) {

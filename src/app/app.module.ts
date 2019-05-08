@@ -17,7 +17,7 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import {BrowserAnimationsModule, NoopAnimationsModule} from '@angular/platform-browser/animations';
 import {
     MatAutocompleteModule,
-    MatButtonModule,
+    MatButtonModule, MatButtonToggleModule,
     MatCardModule,
     MatCheckboxModule, MatChipsModule, MatDatepickerModule,
     MatIconModule,
@@ -35,6 +35,8 @@ import { BlogSearchComponent } from './blog/blog-search/blog-search.component';
 import {ShareButtonsModule} from '@ngx-share/buttons';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
+import { CommentsComponent } from './comments/comments.component';
+import { ReplyComponent } from './reply/reply.component';
 
 @NgModule({
     declarations: [
@@ -52,7 +54,9 @@ import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
         BlogDetailComponent,
         BlogUpdateComponent,
         BlogSearchComponent,
-        BlogTagComponent
+        BlogTagComponent,
+        CommentsComponent,
+        ReplyComponent
     ],
     imports: [
         BrowserModule,
@@ -78,7 +82,8 @@ import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
         MatAutocompleteModule,
         ShareButtonsModule,
         MatPaginatorModule,
-        NgxPaginationModule
+        NgxPaginationModule,
+        MatButtonToggleModule
 
     ],
     providers: [],

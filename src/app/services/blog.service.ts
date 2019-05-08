@@ -26,7 +26,7 @@ export class BlogService {
     }
 
     updateProfile(data) {
-        return this.http.post(`${this.API_URL}/update`, data, {headers: this.makeReqHeaderData()});
+        return this.http.post<UserInterface>(`${this.API_URL}/update`, data, {headers: this.makeReqHeaderData()});
     }
 
     makeReqHeaderJson() {
@@ -76,4 +76,5 @@ export class BlogService {
     getBlogDataByTag(tag: string) {
         return this.http.post<BlogInterface[]>(`${this.API_URL}/get-user-by-tag`, {tag}, {headers: this.makeReqHeaderJson()});
     }
+
 }

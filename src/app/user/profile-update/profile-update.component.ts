@@ -56,7 +56,7 @@ export class ProfileUpdateComponent implements OnInit {
             userData.append('phone', value.phone);
             this.blogService.updateProfile(userData)
                 .subscribe(
-                    () => this.handleResponse(),
+                    (data) => this.handleResponse(data),
                     error => console.log(error));
         } else {
             const userData = new FormData();
@@ -68,9 +68,8 @@ export class ProfileUpdateComponent implements OnInit {
             userData.append('image', this.selectedFile);
             this.blogService.updateProfile(userData)
                 .subscribe(
-                    () => this.handleResponse(),
+                    (data) => this.handleResponse(data),
                     error => console.log(error));
-            this.auth.update(this.user);
         }
     }
 
@@ -78,7 +77,8 @@ export class ProfileUpdateComponent implements OnInit {
         this.selectedFile = event.target.files[0];
         return this.selectedFile;
     }
-    handleResponse() {
+    handleResponse(data) {
+        this.user = data;
         this.auth.update(this.user);
         this.router.navigateByUrl('/home/profile');
     }

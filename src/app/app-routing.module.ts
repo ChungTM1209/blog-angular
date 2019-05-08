@@ -14,6 +14,7 @@ import {BlogDetailComponent} from './blog/blog-detail/blog-detail.component';
 import {BlogUpdateComponent} from './blog/blog-update/blog-update.component';
 import {BlogSearchComponent} from './blog/blog-search/blog-search.component';
 import {BlogTagComponent} from './blog/blog-tag/blog-tag.component';
+import {CommentsComponent} from './comments/comments.component';
 
 const routes: Routes = [{
     path: '', redirectTo: 'login', pathMatch: 'full'
@@ -43,7 +44,11 @@ const routes: Routes = [{
         component: ProfileUpdateComponent
     }, {
         path: 'blog-detail/:id',
-        component: BlogDetailComponent
+        component: BlogDetailComponent,
+        children: [{
+            path: 'comments/:id',
+            component: CommentsComponent
+        }]
     }, {
         path: 'blog-update/:id',
         component: BlogUpdateComponent

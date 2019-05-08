@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import { Injectable} from '@angular/core';
 import {BehaviorSubject, Subject} from 'rxjs';
 import {TokenService} from './token.service';
 import {UserInterface} from '../user-interface';
@@ -7,7 +7,7 @@ import {UserInterface} from '../user-interface';
     providedIn: 'root'
 })
 export class AuthService {
-    onUpdate = new EventEmitter<UserInterface>();
+    onUpdate = new Subject<UserInterface>();
     userData = this.onUpdate.asObservable();
     private loggedIn = new BehaviorSubject<boolean>(this.token.loggedIn());
     authStatus = this.loggedIn.asObservable();
