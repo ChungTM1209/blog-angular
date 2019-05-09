@@ -38,6 +38,9 @@ import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ReplyComponent } from './reply/reply.component';
 import {EmbedVideo} from 'ngx-embed-video/dist';
+import { AlbumComponent } from './user/album/album.component';
+import { AlbumListsComponent } from './user/album/album-lists/album-lists.component';
+import { AlbumDetailComponent } from './user/album/album-detail/album-detail.component';
 
 @NgModule({
     declarations: [
@@ -57,7 +60,10 @@ import {EmbedVideo} from 'ngx-embed-video/dist';
         BlogSearchComponent,
         BlogTagComponent,
         CommentsComponent,
-        ReplyComponent
+        ReplyComponent,
+        AlbumComponent,
+        AlbumListsComponent,
+        AlbumDetailComponent
     ],
     imports: [
         BrowserModule,

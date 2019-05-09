@@ -27,7 +27,7 @@
 
         <div class="form-group" style="width: 30%">
             <label for="image">Image</label>
-            <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)" multiple>
+            <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)" >
             <mat-error *ngIf="blogCreateForm.controls.image.hasError('required')">
                 Image required
             </mat-error>
