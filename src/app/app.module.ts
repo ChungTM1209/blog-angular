@@ -37,6 +37,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ReplyComponent } from './reply/reply.component';
+import {EmbedVideo} from 'ngx-embed-video/dist';
 
 @NgModule({
     declarations: [
@@ -83,7 +84,8 @@ import { ReplyComponent } from './reply/reply.component';
         ShareButtonsModule,
         MatPaginatorModule,
         NgxPaginationModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        EmbedVideo
 
     ],
     providers: [],

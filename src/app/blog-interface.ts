@@ -5,4 +5,5 @@ export interface BlogInterface {
     description: string;
     image: string;
     tag: string[];
+    video: string;
 }

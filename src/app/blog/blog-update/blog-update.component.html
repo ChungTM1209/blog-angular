@@ -13,8 +13,11 @@
         </mat-form-field>
         <p>Blog Content</p>
         <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="content"></ckeditor>
-        <input type="file" (change)="selectFile($event)">
-        <mat-form-field class="example-chip-list">
+        <span>Image: </span>
+        <input class="pl-3 pt-2 pb-1" type="file" (change)="selectFile($event)"><br>
+        <span>Video URL: </span>
+        <input class="col-7" type="text" formControlName="video" value="{{blog.video}}">
+        <mat-form-field class="col-7">
             <mat-chip-list #tagList>
                 <mat-chip
                         *ngFor="let tag of tags"

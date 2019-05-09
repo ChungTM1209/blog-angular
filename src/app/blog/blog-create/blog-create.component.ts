@@ -47,6 +47,7 @@ export class BlogCreateComponent implements OnInit {
             contents: ['', Validators.required],
             description: ['', Validators.required],
             image: ['', Validators.required],
+            video: ['']
         });
         this.blogService.getAllTags().subscribe(
             next => this.allTags = next
@@ -60,12 +61,16 @@ export class BlogCreateComponent implements OnInit {
             data.append('title', this.blogCreateForm.value.title);
             data.append('contents', this.blogCreateForm.value.contents);
             data.append('description', this.blogCreateForm.value.description);
+            data.append('video', this.blogCreateForm.value.video);
             data.append('image', this.selectedFile);
             for (let i = 0; i < this.tags.length; i++) {
                 data.append('tag' + i, this.tags[i]);
             }
 
             return this.blogService.createBlog(data).subscribe(() => this.handleResponse());
+        } else {
+            alert('You need to fill out all the requirement information');
+
         }
     }
 

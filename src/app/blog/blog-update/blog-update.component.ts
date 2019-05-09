@@ -42,7 +42,8 @@ export class BlogUpdateComponent implements OnInit {
             description: null,
             id: null,
             image: null,
-            tag: null
+            tag: null,
+            video: null
         };
     }
 
@@ -51,6 +52,7 @@ export class BlogUpdateComponent implements OnInit {
             title: [''],
             content: [''],
             description: [''],
+            video: ['']
 
         });
         const id = +this.route.snapshot.paramMap.get('id');
@@ -73,6 +75,7 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('title', value.title);
             blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
+            blogUpdate.append('video', value.video);
             for (let i = 0; i < this.tags.length; i++) {
                 blogUpdate.append('tag' + i, this.tags[i]);
             }
@@ -85,6 +88,7 @@ export class BlogUpdateComponent implements OnInit {
             blogUpdate.append('title', value.title);
             blogUpdate.append('contents', value.content);
             blogUpdate.append('description', value.description);
+            blogUpdate.append('video', value.video);
             blogUpdate.append('image', this.selectedFile);
             for (let i = 0; i < this.tags.length; i++) {
                 blogUpdate.append('tag' + i, this.tags[i]);
