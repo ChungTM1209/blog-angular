@@ -10,9 +10,7 @@
                     <h5 class="text-light">Welcome: {{user.name}}</h5>
                 </mat-card-content>
             </mat-card>
-<!--            <div class="card-body">-->
-<!--                <currentPage class="card-text">Welcome {{user.name}}</currentPage>-->
-<!--            </div>-->
+
         </div>
         <mat-list>
             <mat-list-item routerLink="profile" class="text-light border-top border-bottom">
@@ -27,9 +25,19 @@
                 <mat-icon class="mr-2" routerLink="create-blog">create</mat-icon>
                 Create-Blog
             </mat-list-item>
+            <mat-list-item routerLink="album-list" class="text-light border-bottom">
+                <mat-icon class="mr-2" routerLink="album-list">folder</mat-icon>
+                Album
+            </mat-list-item>
+            <mat-list-item routerLink="create-album" class="text-light border-bottom">
+                <mat-icon class="mr-2" routerLink="create-album">create</mat-icon>
+                Create-Album
+            </mat-list-item>
+
         </mat-list>
     </mat-sidenav>
     <mat-sidenav-content>
+
         <button mat-mini-fab color="primary" (click)="opened = !opened" style="position: absolute; z-index: 3">
             <mat-icon>list</mat-icon>
         </button>

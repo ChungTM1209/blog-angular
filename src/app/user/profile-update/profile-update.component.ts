@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {UserInterface} from '../../user-interface';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {AuthService} from '../../services/auth.service';
 
 @Component({
@@ -46,31 +46,32 @@ export class ProfileUpdateComponent implements OnInit {
     }
 
     update() {
-        const {value} = this.profileUpdateForm;
-        if (this.selectedFile === null) {
-            const userData = new FormData();
-            userData.append('email', value.email);
-            userData.append('name', value.name);
-            userData.append('dob', value.dob);
-            userData.append('address', value.address);
-            userData.append('phone', value.phone);
-            this.blogService.updateProfile(userData)
-                .subscribe(
-                    (data) => this.handleResponse(data),
-                    error => console.log(error));
-        } else {
-            const userData = new FormData();
-            userData.append('email', value.email);
-            userData.append('name', value.name);
-            userData.append('dob', value.dob);
-            userData.append('address', value.address);
-            userData.append('phone', value.phone);
-            userData.append('image', this.selectedFile);
-            this.blogService.updateProfile(userData)
-                .subscribe(
-                    (data) => this.handleResponse(data),
-                    error => console.log(error));
-        }
+            const {value} = this.profileUpdateForm;
+            if (this.selectedFile === null) {
+                const userData = new FormData();
+                userData.append('email', value.email);
+                userData.append('name', value.name);
+                userData.append('dob', value.dob);
+                userData.append('address', value.address);
+                userData.append('phone', value.phone);
+                this.blogService.updateProfile(userData)
+                    .subscribe(
+                        (data) => this.handleResponse(data),
+                        error => console.log(error));
+            } else {
+                const userData = new FormData();
+                userData.append('email', value.email);
+                userData.append('name', value.name);
+                userData.append('dob', value.dob);
+                userData.append('address', value.address);
+                userData.append('phone', value.phone);
+                userData.append('image', this.selectedFile);
+                this.blogService.updateProfile(userData)
+                    .subscribe(
+                        (data) => this.handleResponse(data),
+                        error => console.log(error));
+            }
+
     }
 
     selectFile(event) {

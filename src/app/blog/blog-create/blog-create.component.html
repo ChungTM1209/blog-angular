@@ -1,64 +1,74 @@
-<form [formGroup]="blogCreateForm" class="container-fluid form-group pt-0 bg-light" (ngSubmit)="create()"
-      enctype="multipart/form-data" novalidate>
-    <h2 class="text-center">Create Blog</h2>
+<div class="container-fluid float-left">
+    <form [formGroup]="blogCreateForm" class="form-group pt-0 bg-light" (ngSubmit)="create()"
+          enctype="multipart/form-data" novalidate>
+        <h2 class="text-center">Create Blog</h2>
 
-    <mat-form-field style="width: 100%">
-        <label for="title"></label>
-        <input matInput type="text" id="title" placeholder="Blog Title" formControlName="title" [errorStateMatcher]="matcher">
-        <mat-error *ngIf="blogCreateForm.controls.title.hasError('required')">
-            Blog Title required
-        </mat-error>
-    </mat-form-field>
-    <mat-form-field style="width: 100%">
-        <label for="Description"></label>
-        <textarea matInput id="Description" rows="3" formControlName="description"
-                  placeholder="Blog Description" [errorStateMatcher]="matcher"></textarea>
-        <mat-error *ngIf="blogCreateForm.controls.description.hasError('required')">
-            Blog Description required
-        </mat-error>
-    </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <label for="title"></label>
+            <input matInput type="text" id="title" placeholder="Blog Title" formControlName="title" [errorStateMatcher]="matcher">
+            <mat-error *ngIf="blogCreateForm.controls.title.hasError('required')">
+                Blog Title required
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+            <label for="Description"></label>
+            <textarea matInput id="Description" rows="3" formControlName="description"
+                      placeholder="Blog Description" [errorStateMatcher]="matcher"></textarea>
+            <mat-error *ngIf="blogCreateForm.controls.description.hasError('required')">
+                Blog Description required
+            </mat-error>
+        </mat-form-field>
 
-    <p>Blog Content</p>
-    <ckeditor [editor]="Editor" formControlName="contents"></ckeditor>
-    <div class="text text-danger" *ngIf="blogCreateForm.controls.contents.hasError('required')">
-        Blog Content required
-    </div>
+        <p >Blog Content</p>
+        <ckeditor [editor]="Editor" formControlName="contents" ></ckeditor>
+        <div class="text text-danger" *ngIf="blogCreateForm.controls.contents.hasError('required')">
+            Blog Content required
+        </div>
 
-    <div class="form-group" style="width: 30%">
-        <label for="image">Image</label>
-        <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)" multiple>
-        <mat-error *ngIf="blogCreateForm.controls.image.hasError('required')">
-            Image required
-        </mat-error>
-    </div>
-    <mat-form-field class="example-chip-list">
-        <mat-chip-list #tagList>
-            <mat-chip
-                    *ngFor="let tag of tags"
-                    [selectable]="selectable"
-                    [removable]="removable"
-                    (removed)="remove(tag)">
-                {{tag}}
-                <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-            </mat-chip>
-            <input
-                    placeholder="Add Tag ..."
-                    #tagInput
-                    [formControl]="tag"
-                    [matChipInputFor]="tagList"
-                    [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                    [matChipInputAddOnBlur]="addOnBlur"
-                    (matChipInputTokenEnd)="add($event)"
-                    [matAutocomplete]="auto">
-        </mat-chip-list>
-        <mat-autocomplete #auto (optionSelected)=selected($event)>
-            <mat-option *ngFor="let tag of allTags" [value]="tag.name" >
-                {{tag.name}}
-            </mat-option>
-        </mat-autocomplete>
-    </mat-form-field>
+        <div class="form-group" style="width: 30%">
+            <label for="image">Image</label>
+            <input type="file" class="form-control" id="image" formControlName="image" (change)="uploadFile($event)" >
+            <mat-error *ngIf="blogCreateForm.controls.image.hasError('required')">
+                Image required
+            </mat-error>
+        </div>
+        <div class="form-group" style="width: 30%">
+            <label for="video">Video</label>
+            <input type="text" class="form-control" id="video" formControlName="video" >
+            <p class="text text-danger" *ngIf="blogCreateForm.controls.video.hasError('pattern')">
+                Video must me URL
+            </p>
+        </div>
+        <mat-form-field class="example-chip-list">
+            <mat-chip-list #tagList>
+                <mat-chip
+                        *ngFor="let tag of tags"
+                        [selectable]="selectable"
+                        [removable]="removable"
+                        (removed)="remove(tag)">
+                    {{tag}}
+                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                </mat-chip>
+                <input
+                        placeholder="Add Tag ..."
+                        #tagInput
+                        [formControl]="tag"
+                        [matChipInputFor]="tagList"
+                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                        [matChipInputAddOnBlur]="addOnBlur"
+                        (matChipInputTokenEnd)="add($event)"
+                        [matAutocomplete]="auto">
+            </mat-chip-list>
+            <mat-autocomplete #auto (optionSelected)=selected($event)>
+                <mat-option *ngFor="let tag of allTags" [value]="tag.name" >
+                    {{tag.name}}
+                </mat-option>
+            </mat-autocomplete>
+        </mat-form-field>
 
 
 
-    <button type="submit" class="btn btn-outline-primary float-right">Create Blog</button>
-</form>
+        <button type="submit" class="btn btn-outline-primary float-right">Create Blog</button>
+    </form>
+
+</div>

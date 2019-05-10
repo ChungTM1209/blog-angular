@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <h2 class="text-center">Album Lists</h2>
+
+  <div class="row">
+    <div *ngIf="albums.length === 0">
+      <p class="text text-danger">Chưa có Album nào</p>
+    </div>
+
+    <div class="col-md-4 p-2" *ngFor="let album of albums ">
+      <div class="card">
+
+        <div class="card-body">
+
+          <a class="activator waves-effect waves-light mr-4"><i
+                  class="fas fa-share-alt"></i></a>
+          <h4 class="card-title" *ngIf="album" [routerLink]="['/home/album-detail',album.id]">{{ album.name }}</h4>
+          <a *ngIf="!album">{{album.name}}</a>
+          <hr>
+          <p class="card-text" [routerLink]="['/home/album-detail',album.id]">{{ album.title }}</p>
+          <a *ngIf="!album">{{album.title}}</a>
+          <p class="card-text text-muted font-italic" >Ngày tạo: {{ album.created_at }}</p>
+
+          <a class="btn btn-outline-danger float-right" (click)="delete(album.id)">Delete</a>
+        </div>
+      </div>
+
+    </div>
+
+
+  </div>
+
+
+</div>

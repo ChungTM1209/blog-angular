@@ -1,0 +1,20 @@
+<div class="container-fluid float-left">
+  <form [formGroup]="albumCreateForm" class="form-group pt-0 bg-light" (ngSubmit)="create()"
+        enctype="multipart/form-data" novalidate>
+    <h2 class="text-center">Create Album</h2>
+      <div class="form-group">
+        <label for="name">Album name</label>
+        <input type="text" class="form-control" id="name" aria-describedby="name" formControlName="name" placeholder="Enter album name">
+      </div>
+      <div class="form-group">
+        <label for="title">Album title</label>
+        <input type="text" class="form-control" id="title" formControlName="title" placeholder="Album title">
+      </div>
+    <div class="form-group">
+        <label for="file">Images</label>
+        <input type="file" class="form-control" id="file" (change)="uploadFile($event)" multiple>
+      </div>
+    <button type="submit" class="btn btn-outline-primary float-right">Create Album</button>
+  </form>
+
+</div>

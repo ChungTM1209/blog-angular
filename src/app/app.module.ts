@@ -37,6 +37,11 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { BlogTagComponent } from './blog/blog-tag/blog-tag.component';
 import { CommentsComponent } from './comments/comments.component';
 import { ReplyComponent } from './reply/reply.component';
+import {EmbedVideo} from 'ngx-embed-video/dist';
+import { AlbumComponent } from './user/album/album.component';
+import { AlbumListsComponent } from './user/album/album-lists/album-lists.component';
+import { AlbumDetailComponent } from './user/album/album-detail/album-detail.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -56,7 +61,11 @@ import { ReplyComponent } from './reply/reply.component';
         BlogSearchComponent,
         BlogTagComponent,
         CommentsComponent,
-        ReplyComponent
+        ReplyComponent,
+        AlbumComponent,
+        AlbumListsComponent,
+        AlbumDetailComponent,
+        ChangePasswordComponent
     ],
     imports: [
         BrowserModule,
@@ -83,7 +92,8 @@ import { ReplyComponent } from './reply/reply.component';
         ShareButtonsModule,
         MatPaginatorModule,
         NgxPaginationModule,
-        MatButtonToggleModule
+        MatButtonToggleModule,
+        EmbedVideo
 
     ],
     providers: [],

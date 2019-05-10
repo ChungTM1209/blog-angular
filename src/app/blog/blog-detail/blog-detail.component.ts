@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {BlogInterface} from '../../blog-interface';
 import {BlogService} from '../../services/blog.service';
 import {ActivatedRoute} from '@angular/router';
+import {EmbedVideoService} from 'ngx-embed-video/dist';
 
 @Component({
     selector: 'app-blog-detail',
@@ -11,18 +12,21 @@ import {ActivatedRoute} from '@angular/router';
 export class BlogDetailComponent implements OnInit {
     blog: BlogInterface;
     tags: string[] = [];
-    allTags;
     status = false;
+    iframeHtml: any;
+
 
     constructor(private blogService: BlogService,
-                private route: ActivatedRoute) {
+                private route: ActivatedRoute,
+                private embedService: EmbedVideoService) {
         this.blog = {
             title: null,
             content: null,
             description: null,
             id: null,
             image: null,
-            tag: null
+            tag: null,
+            video: null
         };
     }
 
@@ -36,6 +40,9 @@ export class BlogDetailComponent implements OnInit {
             .subscribe(data => {
                     this.blog = data;
                     this.changeToArray(data.tag);
+                    if (this.blog.video){
+                        this.iframeHtml = this.embedService.embed(this.blog.video);
+                    }
                 },
                 error1 => console.log(error1));
     }
@@ -49,4 +56,6 @@ export class BlogDetailComponent implements OnInit {
     changeStatus($event: MouseEvent) {
         this.status = !this.status;
     }
+
+
 }

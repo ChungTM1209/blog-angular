@@ -18,6 +18,10 @@
                 {{rep.body}}
             </p>
         </mat-card-content>
+        <mat-form-field class="col-11 offset-1" [hidden]="!hidden">
+            <textarea matInput placeholder="Leave a reply here" [formControl]="body"></textarea>
+            <mat-error *ngIf="body.hasError('required')">Body Required</mat-error>
+        </mat-form-field>
         <div class="col-2 offset-10">
             <button mat-raised-button type="submit" color="primary" (click)="reply()" [hidden]="!hidden" >Reply</button>
         </div>
