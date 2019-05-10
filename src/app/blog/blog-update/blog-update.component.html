@@ -1,53 +1,60 @@
 <div class="container">
     <h2 class="text-center">Blog Update</h2>
     <form [formGroup]="blogUpdateForm" (ngSubmit)="updateBlog()">
-        <img src="http://localhost:8000/storage/{{blog.image}}" style="width: 100%; height: 400px"
-             class="img-thumbnail" *ngIf="blog.image">
-        <mat-form-field>
-            <input matInput type="text" value="{{blog.title}}" placeholder="Blog Title" formControlName="title">
-        </mat-form-field>
+        <div class="col-6 float-left">
+            <img src="http://localhost:8000/storage/{{blog.image}}" style="width: 100%; height: 250px"
+                 class="img-thumbnail" *ngIf="blog.image">
+        </div>
+        <div class="col-5 float-left">
+            <mat-form-field style="height: 100px">
+                <input matInput type="text" value="{{blog.title}}" placeholder="Blog Title" formControlName="title">
+            </mat-form-field>
 
-        <mat-form-field>
-            <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description"
-                   formControlName="description">
-        </mat-form-field>
-        <p>Blog Content</p>
-        <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="content"></ckeditor>
-        <span>Image: </span>
-        <input class="pl-3 pt-2 pb-1" type="file" (change)="selectFile($event)"><br>
-        <span>Video URL: </span>
-        <input class="col-7" type="text" formControlName="video" value="{{blog.video}}">
-        <p class="text text-danger" *ngIf="blogUpdateForm.controls.video.hasError('pattern')">
-            Video must me URL
-        </p>
-        <mat-form-field class="col-7">
-            <mat-chip-list #tagList>
-                <mat-chip
-                        *ngFor="let tag of tags"
-                        [selectable]="selectable"
-                        [removable]="removable"
-                        (removed)="remove(tag)">
-                    {{tag}}
-                    <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
-                </mat-chip>
-                <input
-                        placeholder="Add Tag ..."
-                        #tagInput
-                        [formControl]="tag"
-                        [matChipInputFor]="tagList"
-                        [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
-                        [matChipInputAddOnBlur]="addOnBlur"
-                        (matChipInputTokenEnd)="add($event)"
-                        [matAutocomplete]="auto">
-            </mat-chip-list>
-            <mat-autocomplete #auto (optionSelected)=selected($event)>
-                <mat-option *ngFor="let tag of allTags" [value]="tag">
-                    {{tag.name}}
-                </mat-option>
-            </mat-autocomplete>
-        </mat-form-field>
-        <br>
-        <button type="submit" class="float-right">Update</button>
+            <mat-form-field style="height: 100px">
+                <input matInput type="text" value="{{blog.description}}" placeholder="Blog Description"
+                       formControlName="description">
+            </mat-form-field>
+        </div>
+        <div style="clear: both; padding-top: 20px">
+            <h4>Blog Content</h4>
+            <ckeditor [editor]="Editor" data="{{blog.content}}" formControlName="content"></ckeditor>
+            <span>Image: </span>
+            <input class="pl-3 pt-2 pb-1" type="file" (change)="selectFile($event)"><br>
+            <span>Video URL: </span>
+            <input class="col-7" type="text" formControlName="video" value="{{blog.video}}">
+            <p class="text text-danger" *ngIf="blogUpdateForm.controls.video.hasError('pattern')">
+                Video must me URL
+            </p>
+            <mat-form-field class="col-7">
+                <mat-chip-list #tagList>
+                    <mat-chip
+                            *ngFor="let tag of tags"
+                            [selectable]="selectable"
+                            [removable]="removable"
+                            (removed)="remove(tag)">
+                        {{tag}}
+                        <mat-icon matChipRemove *ngIf="removable">cancel</mat-icon>
+                    </mat-chip>
+                    <input
+                            placeholder="Add Tag ..."
+                            #tagInput
+                            [formControl]="tag"
+                            [matChipInputFor]="tagList"
+                            [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+                            [matChipInputAddOnBlur]="addOnBlur"
+                            (matChipInputTokenEnd)="add($event)"
+                            [matAutocomplete]="auto">
+                </mat-chip-list>
+                <mat-autocomplete #auto (optionSelected)=selected($event)>
+                    <mat-option *ngFor="let tag of allTags" [value]="tag">
+                        {{tag.name}}
+                    </mat-option>
+                </mat-autocomplete>
+            </mat-form-field>
+            <br>
+            <button type="submit" class="float-right">Update</button>
+        </div>
+
     </form>
 
 </div>
