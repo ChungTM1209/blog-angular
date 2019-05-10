@@ -13,7 +13,9 @@
                 <div class="view overlay" *ngIf="blog.image">
                     <img class="card-img-top"
                          src="http://localhost:8000/storage/{{blog.image}}"
-                         alt="Card image cap" [routerLink]="['/home/blog-detail',blog.id]">
+                         alt="Card image cap" [routerLink]="['/home/blog-detail',blog.id]"
+                         style="height: 250px"
+                    >
                     <a>
                         <div class="mask rgba-white-slight"></div>
                     </a>
