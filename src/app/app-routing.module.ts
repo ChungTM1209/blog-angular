@@ -17,6 +17,8 @@ import {BlogTagComponent} from './blog/blog-tag/blog-tag.component';
 import {CommentsComponent} from './comments/comments.component';
 import {AlbumComponent} from './user/album/album.component';
 import {AlbumListsComponent} from './user/album/album-lists/album-lists.component';
+import {AlbumDetailComponent} from './user/album/album-detail/album-detail.component';
+import {ChangePasswordComponent} from './user/change-password/change-password.component';
 
 const routes: Routes = [{
     path: '', redirectTo: 'login', pathMatch: 'full'
@@ -36,35 +38,41 @@ const routes: Routes = [{
         path: 'profile',
         component: ProfileComponent,
     }, {
+        path: 'change-password',
+        component: ChangePasswordComponent
+    }, {
         path: 'blogs',
         component: BlogPostsComponent,
     }, {
-        path: 'create-album',
+        path: 'create-blog',
         component: BlogCreateComponent
     }, {
-        path: 'album',
+        path: 'create-album',
         component: AlbumComponent
     }, {
-        path: 'show-album',
+        path: 'album-list',
         component: AlbumListsComponent
     }, {
         path: 'profile-update',
         component: ProfileUpdateComponent
     }, {
         path: 'album-detail/:id',
+        component: AlbumDetailComponent,
+    }, {
+        path: 'blog-detail/:id',
         component: BlogDetailComponent,
         children: [{
             path: 'comments/:id',
             component: CommentsComponent
         }]
     }, {
-        path: 'album-update/:id',
+        path: 'blog-update/:id',
         component: BlogUpdateComponent
     }, {
         path: 'search/:keyWords',
         component: BlogSearchComponent
     }, {
-        path: 'album-tag/:tagName',
+        path: 'blog-tag/:tagName',
         component: BlogTagComponent
     }]
 }, {

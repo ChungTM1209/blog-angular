@@ -41,6 +41,6 @@ export class AlbumComponent implements OnInit {
     }
     handleResponse() {
         alert('Create Album Successfully');
-        this.route.navigateByUrl('/home/show-album');
+        this.route.navigateByUrl('/home/album-list');
     }
 }

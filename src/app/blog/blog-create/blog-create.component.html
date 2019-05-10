@@ -35,9 +35,9 @@
         <div class="form-group" style="width: 30%">
             <label for="video">Video</label>
             <input type="text" class="form-control" id="video" formControlName="video" >
-            <mat-error *ngIf="blogCreateForm.controls.video.hasError('url')">
+            <p class="text text-danger" *ngIf="blogCreateForm.controls.video.hasError('pattern')">
                 Video must me URL
-            </mat-error>
+            </p>
         </div>
         <mat-form-field class="example-chip-list">
             <mat-chip-list #tagList>

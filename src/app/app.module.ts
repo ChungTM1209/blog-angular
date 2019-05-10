@@ -41,6 +41,7 @@ import {EmbedVideo} from 'ngx-embed-video/dist';
 import { AlbumComponent } from './user/album/album.component';
 import { AlbumListsComponent } from './user/album/album-lists/album-lists.component';
 import { AlbumDetailComponent } from './user/album/album-detail/album-detail.component';
+import { ChangePasswordComponent } from './user/change-password/change-password.component';
 
 @NgModule({
     declarations: [
@@ -63,7 +64,8 @@ import { AlbumDetailComponent } from './user/album/album-detail/album-detail.com
         ReplyComponent,
         AlbumComponent,
         AlbumListsComponent,
-        AlbumDetailComponent
+        AlbumDetailComponent,
+        ChangePasswordComponent
     ],
     imports: [
         BrowserModule,

@@ -1,3 +1,14 @@
-<p>
-  album-detail works!
-</p>
+<div class="container p-4">
+  <h2 class="text-center">Album Detail</h2>
+  <mat-card class="col-3 m-2 float-left" *ngFor="let image of album.images">
+    <mat-card-header>
+      <mat-card-title>Album name: {{album.name}}</mat-card-title>
+      <mat-card-subtitle>Album title: {{album.title}}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src="http://localhost:8000/images/{{image}}" style=" height: 300px">
+<mat-card-content>
+  Created at: {{album.created_at}}
+</mat-card-content>
+  </mat-card>
+
+</div>

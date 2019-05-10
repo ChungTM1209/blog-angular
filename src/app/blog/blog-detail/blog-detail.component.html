@@ -13,12 +13,12 @@
             </p>
 
         </mat-card-content>
-        <div  [innerHTML]="iframeHtml"
+        <div  *ngIf="iframeHtml" [innerHTML]="iframeHtml"
                  frameborder="0"
                  allowfullscreen></div>
         <span class="float-left pr-3 pt-1">TAG: </span>
         <mat-chip-list *ngFor="let tag of tags" style="float: left; padding-right: 10px">
-            <mat-chip [routerLink]="['/home/album-tag/',tag]">{{tag}}</mat-chip>
+            <mat-chip [routerLink]="['/home/blog-tag/',tag]">{{tag}}</mat-chip>
         </mat-chip-list>
 
         <mat-card-actions style="clear: both;">
@@ -31,7 +31,7 @@
                                [size]="2"
                                [autoSetMeta]="true"
                 ></share-buttons>
-                <button class="btn btn-outline-primary" [routerLink]="['/home/album-update/', blog.id]">EDIT</button>
+                <button class="btn btn-outline-primary" [routerLink]="['/home/blog-update/', blog.id]">EDIT</button>
             </div>
         </mat-card-actions>
         <button mat-raised-button color="primary" (click)="changeStatus($event)" [routerLink]="['comments/', blog.id]">Comment</button>

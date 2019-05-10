@@ -47,7 +47,8 @@ export class BlogCreateComponent implements OnInit {
             contents: ['', Validators.required],
             description: ['', Validators.required],
             image: ['', Validators.required],
-            video: ['']
+            video: ['',
+                Validators.pattern('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\'\\(\\)\\*\\+,;=.]+$')]
         });
         this.blogService.getAllTags().subscribe(
             next => this.allTags = next

@@ -20,7 +20,10 @@ export class AlbumService {
     }
 
     showDetailAlbum(id) {
-        return this.http.get(`${this.API_URL}/show-album/${id}`, {headers: this.makeReqHeaderJson()});
+        return this.http.get<AlbumInterface>(`${this.API_URL}/show-album/${id}`, {headers: this.makeReqHeaderJson()});
+    }
+    deleteAlbum(id) {
+        return this.http.delete<AlbumInterface[]>(`${this.API_URL}/delete-album/${id}`, {headers: this.makeReqHeaderJson()});
     }
 
     makeReqHeaderJson() {

@@ -12,7 +12,6 @@ import {EmbedVideoService} from 'ngx-embed-video/dist';
 export class BlogDetailComponent implements OnInit {
     blog: BlogInterface;
     tags: string[] = [];
-    allTags;
     status = false;
     iframeHtml: any;
 
@@ -40,8 +39,10 @@ export class BlogDetailComponent implements OnInit {
         return this.blogService.showBlogDetail(id)
             .subscribe(data => {
                     this.blog = data;
-                    this.iframeHtml = this.embedService.embed(this.blog.video);
                     this.changeToArray(data.tag);
+                    if (this.blog.video){
+                        this.iframeHtml = this.embedService.embed(this.blog.video);
+                    }
                 },
                 error1 => console.log(error1));
     }
@@ -55,4 +56,6 @@ export class BlogDetailComponent implements OnInit {
     changeStatus($event: MouseEvent) {
         this.status = !this.status;
     }
+
+
 }

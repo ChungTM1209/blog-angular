@@ -3,4 +3,5 @@ export interface AlbumInterface {
     name: string;
     title: string;
     created_at: string;
+    images: string;
 }

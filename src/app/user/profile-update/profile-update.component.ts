@@ -33,10 +33,10 @@ export class ProfileUpdateComponent implements OnInit {
     ngOnInit() {
         this.profileUpdateForm = this.fb.group({
             email: [''],
-            name: ['', Validators.required],
-            dob: ['', Validators.required],
-            address: ['', Validators.required],
-            phone: ['', Validators.required],
+            name: [''],
+            dob: [''],
+            address: [''],
+            phone: [''],
         });
         this.blogService.getUserData().subscribe(
             (user) => {
@@ -46,7 +46,6 @@ export class ProfileUpdateComponent implements OnInit {
     }
 
     update() {
-        if (this.profileUpdateForm.valid) {
             const {value} = this.profileUpdateForm;
             if (this.selectedFile === null) {
                 const userData = new FormData();
@@ -72,7 +71,6 @@ export class ProfileUpdateComponent implements OnInit {
                         (data) => this.handleResponse(data),
                         error => console.log(error));
             }
-        }
 
     }
 

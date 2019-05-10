@@ -8,7 +8,7 @@ import {AlbumInterface} from '../../../album-interface';
     styleUrls: ['./album-lists.component.sass']
 })
 export class AlbumListsComponent implements OnInit {
-    albums: AlbumInterface[];
+    albums: AlbumInterface[] = [];
 
     constructor(private albumService: AlbumService) {
     }
@@ -19,5 +19,11 @@ export class AlbumListsComponent implements OnInit {
 
     getAllAlbum() {
         return this.albumService.getAllAlbum().subscribe(data => this.albums = data);
+    }
+
+    delete(id: number) {
+        if (confirm('Bạn có chắc chắn muốn xóa')) {
+            return this.albumService.deleteAlbum(id).subscribe(data => this.albums = data);
+        }
     }
 }

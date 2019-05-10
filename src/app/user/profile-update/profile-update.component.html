@@ -1,6 +1,6 @@
 <div class="container col-form-label pt-4 bg-light" style="border-radius: 1%">
   <form [formGroup]="profileUpdateForm" (ngSubmit)="update()">
-    <h2>Profile Update</h2>
+    <h2 class="text-center">Profile Update</h2>
     <div class="form-group row">
       <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
       <div class="col-sm-10">
@@ -11,14 +11,12 @@
       <label for="name" class="col-sm-2 col-form-label">Name</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="name" value="{{user.name}}" formControlName="name">
-        <mat-error *ngIf="profileUpdateForm.controls.name.hasError('required')"> Name is required</mat-error>
       </div>
     </div>
     <div class="form-group row">
       <label for="dob" class="col-sm-2 col-form-label">Day of birth</label>
       <div class="col-sm-10">
         <input type="date" class="form-control" id="dob" value="{{user.dob}}" formControlName="dob">
-        <mat-error *ngIf="profileUpdateForm.controls.dob.hasError('required')"> Day of birth is required</mat-error>
       </div>
 
     </div>
@@ -26,7 +24,6 @@
       <label for="address" class="col-sm-2 col-form-label">Address</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" id="address" value="{{user.address}}" formControlName="address">
-        <mat-error *ngIf="profileUpdateForm.controls.address.hasError('required')"> Address is required</mat-error>
 
       </div>
     </div>
@@ -35,7 +32,6 @@
       <label for="phone" class="col-sm-2 col-form-label">Phone</label>
       <div class="col-sm-10">
         <input type="number" class="form-control" id="phone" value="{{user.phone}}" formControlName="phone">
-        <mat-error *ngIf="profileUpdateForm.controls.phone.hasError('required')"> Phone is required</mat-error>
 
       </div>
 
@@ -44,7 +40,6 @@
       <label for="file" class="col-sm-2 col-form-label">Image</label>
       <div class="col-sm-10">
         <input type="file" class="form-control" id="file" (change)="selectFile($event)">
-        <mat-error *ngIf="profileUpdateForm.controls.image.hasError('required')"> Image is required</mat-error>
 
       </div>
       <div class="form-group col-sm-1 offset-2 pt-3">

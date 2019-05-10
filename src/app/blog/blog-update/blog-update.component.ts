@@ -52,8 +52,8 @@ export class BlogUpdateComponent implements OnInit {
             title: [''],
             content: [''],
             description: [''],
-            video: ['']
-
+            video: ['',
+                Validators.pattern('^(?:http(s)?:\\/\\/)?[\\w.-]+(?:\\.[\\w\\.-]+)+[\\w\\-\\._~:/?#[\\]@!\\$&\'\\(\\)\\*\\+,;=.]+$')]
         });
         const id = +this.route.snapshot.paramMap.get('id');
         this.blogService.showBlogDetail(id).subscribe(
