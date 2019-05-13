@@ -15,7 +15,7 @@
             Email must be ...@abc.abc
           </mat-error>
         </mat-form-field>
-        <mat-error *ngIf="error.email">{{error.email}}</mat-error>
+<!--        <mat-error *ngIf="error.email">{{error.email}}</mat-error>-->
 
         <mat-form-field style="width: 100%">
             <input matInput type="text" class="form-control" id="name" placeholder="Name" formControlName="name" [errorStateMatcher]="matcher">
@@ -26,7 +26,7 @@
             Email must be at least 6 characters
           </mat-error>
         </mat-form-field>
-        <mat-error *ngIf="error.name">{{error.name}}</mat-error>
+<!--        <mat-error *ngIf="error.name">{{error.name}}</mat-error>-->
 
         <mat-form-field style="width: 100%">
             <input matInput type="password" class="form-control" id="password" placeholder="Password" formControlName="password" [errorStateMatcher]="matcher">

@@ -5,7 +5,7 @@
             <p class="text text-danger">Chưa có bài viết nào</p>
         </div>
         <div class="col-12">
-            <p *ngIf="blogs.length > 0">Tìm thấy: {{blogs.length}} bài viết với từ khóa: {{keyWords}}</p>
+            <p class="text-primary" *ngIf="blogs.length > 0">Tìm thấy: {{blogs.length}} bài viết với từ khóa: {{keyWords}}</p>
         </div>
         <div class="col-md-4 p-2" *ngFor="let blog of blogs">
             <div class="card">
